@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_primary"
+    tools:context=".ui.academ_calendar.AcademicCalendarFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="16dp"
+            android:text="IITU Academic Calendar 2020/21"
+            android:textAlignment="center"
+            android:textColor="@color/primary_text_color"
+            android:textSize="@dimen/large_text_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="16dp"
+            android:text="Fall Term"
+            android:textColor="@color/secondary_text_color"
+            android:textSize="@dimen/medium_text_size" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/autumnRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="16dp"
+            android:text="Spring Term"
+            android:textColor="@color/secondary_text_color"
+            android:textSize="@dimen/medium_text_size" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/springRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

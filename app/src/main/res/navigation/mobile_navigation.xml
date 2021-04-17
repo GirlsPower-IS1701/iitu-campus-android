@@ -11,4 +11,9 @@
         android:label="@string/schedule"
         tools:layout="@layout/fragment_home" />
 
+    <fragment
+        android:id="@+id/nav_academic_calendar"
+        android:name="kz.iitu.campus.ui.academ_calendar.AcademicCalendarFragment"
+        android:label="@string/academic_calendar"
+        tools:layout="@layout/fragment_academic_calendar" />
 </navigation>

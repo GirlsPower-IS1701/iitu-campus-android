@@ -1,4 +1,4 @@
-package kz.iitu.campus.pojo.schedule
+package kz.iitu.campus.ui.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_schedule.view.*
 import kz.iitu.campus.R
+import kz.iitu.campus.pojo.schedule.ScheduleItem
 
 class ScheduleRVA(
     private val list: List<ScheduleItem>
