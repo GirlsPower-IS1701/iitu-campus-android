@@ -7,10 +7,15 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+
     <string name="app_label">CAMPUS IITU</string>
     <string name="user_name">Makymetova Ainur</string>
     <string name="user_id">ID: 23961</string>
+
+    <string name="schedule">Schedule</string>
+    <string name="references">My Certificates</string>
+    <string name="academic_calendar">Academic Calendar</string>
+    <string name="chat">Chat</string>
+    <string name="study_plan">My Study plan</string>
+    <string name="logout">Log out</string>
 </resources>
