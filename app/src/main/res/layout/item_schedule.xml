@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardCornerRadius="@dimen/_10sdp"
-        android:background="@color/white">
+        android:background="@color/white"
+        app:cardCornerRadius="@dimen/_10sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,23 +36,57 @@
                 android:textSize="@dimen/standard_text_size"
                 tool:text="is-1701" />
 
-            <TextView
-                android:id="@+id/teacher"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:textColor="@color/secondary_text_color"
-                android:textSize="@dimen/standard_text_size"
-                tool:text="is-1701" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/room"
-                android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+
+                    android:contentDescription="@string/nav_header_desc"
+                    android:paddingTop="@dimen/nav_header_vertical_spacing"
+                    app:srcCompat="@drawable/ic_location" />
+
+                <TextView
+                    android:id="@+id/teacher"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/secondary_text_color"
+                    android:textSize="@dimen/standard_text_size"
+                    tool:text="is-1701" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:textColor="@color/secondary_text_color"
-                android:textSize="@dimen/standard_text_size"
-                tool:text="is-1701" />
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:contentDescription="@string/nav_header_desc"
+                    android:paddingTop="@dimen/nav_header_vertical_spacing"
+                    app:srcCompat="@drawable/ic_person" />
+
+                <TextView
+                    android:id="@+id/room"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/secondary_text_color"
+                    android:textSize="@dimen/standard_text_size"
+                    tool:text="is-1701" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
