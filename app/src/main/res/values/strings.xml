@@ -10,4 +10,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="app_label">CAMPUS IITU</string>
+    <string name="user_name">Makymetova Ainur</string>
+    <string name="user_id">ID: 23961</string>
 </resources>
