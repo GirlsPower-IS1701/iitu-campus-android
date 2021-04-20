@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "302956196306",
+    "project_id": "campus-a64cb",
+    "storage_bucket": "campus-a64cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302956196306:android:6b22b4575a07cffab6180b",
+        "android_client_info": {
+          "package_name": "kz.iitu.campus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "302956196306-kvf78mpirtlm3hlbp8ahrlv0eqrut366.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJpeJdghoKrTuZxJzo6dT1-ES4m4Zl-RA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302956196306-kvf78mpirtlm3hlbp8ahrlv0eqrut366.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302956196306:android:da8be6b586bb9dd6b6180b",
+        "android_client_info": {
+          "package_name": "kz.iitu.campus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "302956196306-kvf78mpirtlm3hlbp8ahrlv0eqrut366.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJpeJdghoKrTuZxJzo6dT1-ES4m4Zl-RA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302956196306-kvf78mpirtlm3hlbp8ahrlv0eqrut366.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
