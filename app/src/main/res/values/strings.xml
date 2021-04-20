@@ -11,6 +11,7 @@
     <string name="app_label">CAMPUS IITU</string>
     <string name="user_name">Makymetova Ainur</string>
     <string name="user_id">ID: 23961</string>
+    <string name="empty" />
 
     <string name="schedule">Schedule</string>
     <string name="references">My Certificates</string>
@@ -18,4 +19,9 @@
     <string name="chat">Chat</string>
     <string name="study_plan">My Study plan</string>
     <string name="logout">Log out</string>
+    <string name="login_label">Sign in</string>
+    <string name="login_username_label">ID</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_to_system_label">Login to Campus</string>
+    <string name="warning">Problem with Internet Connection</string>
 </resources>

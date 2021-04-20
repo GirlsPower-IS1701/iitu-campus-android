@@ -6,8 +6,12 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 interface ApiClient {
+    private companion object {
+        const val ACCOUNT = "accounts/"
+        const val LOGIN = ACCOUNT + "api/token/"
+    }
 
-    @POST("login")
+    @POST(LOGIN)
     @FormUrlEncoded
     suspend fun login(
         @Field("username") username: String,
