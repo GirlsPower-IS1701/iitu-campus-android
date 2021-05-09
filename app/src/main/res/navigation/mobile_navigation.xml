@@ -9,17 +9,23 @@
         android:id="@+id/nav_home"
         android:name="kz.iitu.campus.ui.home.HomeFragment"
         android:label="@string/schedule"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_academic_calendar2"
+            app:destination="@id/nav_academic_calendar" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/nav_academic_calendar"
         android:name="kz.iitu.campus.ui.academ_calendar.AcademicCalendarFragment"
         android:label="@string/academic_calendar"
-        tools:layout="@layout/fragment_academic_calendar" />
+        tools:layout="@layout/fragment_academic_calendar"/>
 
     <dialog
         android:id="@+id/nav_logout"
         android:name="kz.iitu.campus.ui.login.ExitDialog"
         android:label="@string/logout"
         tools:layout="@layout/dialog_exit" />
+
 </navigation>
