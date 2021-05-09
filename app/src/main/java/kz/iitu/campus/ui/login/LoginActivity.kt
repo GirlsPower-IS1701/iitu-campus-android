@@ -35,7 +35,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkForAccessToken() {
-        val token = UserSession.getUserToken(this)
         if (UserSession.isLoggedIn(this))
             goToMain()
     }
@@ -48,19 +47,31 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initUI() {
         loginBtn.setOnClickListener {
-            if (userNameText.text.toString().isNullOrBlank() || passwordText.text.toString()
-                    .isNullOrBlank()
+            if (userNameText.text.toString().isBlank() || passwordText.text.toString()
+                    .isBlank()
             ) {
-                Toast.makeText(this, getString(R.string.warning), Toast.LENGTH_LONG)
+                Toast.makeText(
+                    this,
+                    getString(R.string.login_empty_input_warning),
+                    Toast.LENGTH_LONG
+                ).show()
                 return@setOnClickListener
             }
-            viewModel
-                .login(userNameText.text.toString(), passwordText.text.toString())
+           // viewModel.login(userNameText.text.toString(), passwordText.text.toString())
             goToMain()
         }
     }
 
     private fun goToMain() {
+     /*   if (viewModel.accessLiveData.value == null) {
+            Toast.makeText(
+                this,
+                getString(R.string.warning),
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }*/
+
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
