@@ -24,4 +24,8 @@
     <string name="login_password_label">Password</string>
     <string name="login_to_system_label">Login to Campus</string>
     <string name="warning">Problem with Internet Connection</string>
+    <string name="do_you_really_want_to_exit">Do you really want to exit?</string>
+    <string name="no">No</string>
+    <string name="yes">yes</string>
+    <string name="settings">Settings</string>
 </resources>

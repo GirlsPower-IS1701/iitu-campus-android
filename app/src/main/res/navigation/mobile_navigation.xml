@@ -16,4 +16,10 @@
         android:name="kz.iitu.campus.ui.academ_calendar.AcademicCalendarFragment"
         android:label="@string/academic_calendar"
         tools:layout="@layout/fragment_academic_calendar" />
+
+    <dialog
+        android:id="@+id/nav_logout"
+        android:name="kz.iitu.campus.ui.login.ExitDialog"
+        android:label="@string/logout"
+        tools:layout="@layout/dialog_exit" />
 </navigation>

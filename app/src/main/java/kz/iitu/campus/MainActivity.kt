@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kz.iitu.campus.services.UserSession
 import kz.iitu.campus.ui.login.LoginActivity
 
-class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener{
+class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -31,11 +31,13 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_home
+            ), drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        setNavigationViewListeners()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -43,23 +45,9 @@ class MainActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelected
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    private fun setNavigationViewListeners() {
-        nav_view.setNavigationItemSelectedListener(this)
-    }
-
     private fun logOut() {
         UserSession.logout(this)
         startActivity(Intent(this, LoginActivity::class.java))
         finish()
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.logout -> {
-                logOut()
-                true
-            }
-            else -> false
-        }
     }
 }

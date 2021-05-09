@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkForAccessToken() {
+        val token = UserSession.getUserToken(this)
         if (UserSession.isLoggedIn(this))
             goToMain()
     }
@@ -61,5 +62,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun goToMain() {
         startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }
