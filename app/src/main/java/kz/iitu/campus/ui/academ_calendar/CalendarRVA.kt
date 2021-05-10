@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_academic_calendar.view.*
 import kz.iitu.campus.R
-import kz.iitu.campus.pojo.academic_calendar.CalendarItem
+import kz.iitu.campus.model.academic_calendar.CalendarItem
 
 
 public class CalendarRVA(

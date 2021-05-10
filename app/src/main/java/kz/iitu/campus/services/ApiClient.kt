@@ -1,6 +1,6 @@
 package kz.iitu.campus.services
 
-import kz.iitu.campus.pojo.auth.LoginResponse
+import kz.iitu.campus.model.model.LoginResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST

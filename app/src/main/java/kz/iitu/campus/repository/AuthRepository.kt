@@ -2,7 +2,7 @@ package kz.iitu.campus.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kz.iitu.campus.pojo.auth.LoginResponse
+import kz.iitu.campus.model.model.LoginResponse
 import kz.iitu.campus.services.ApiClient
 
 class AuthRepository(

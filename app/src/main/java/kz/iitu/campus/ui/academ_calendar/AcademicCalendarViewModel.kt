@@ -2,8 +2,8 @@ package kz.iitu.campus.ui.academ_calendar
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kz.iitu.campus.pojo.academic_calendar.AcademicCalendar
-import kz.iitu.campus.pojo.academic_calendar.CalendarItem
+import kz.iitu.campus.model.academic_calendar.AcademicCalendar
+import kz.iitu.campus.model.academic_calendar.CalendarItem
 
 public class AcademicCalendarViewModel : ViewModel() {
     public val list = MutableLiveData<AcademicCalendar>()

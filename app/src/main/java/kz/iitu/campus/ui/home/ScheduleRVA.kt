@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_schedule.view.*
 import kz.iitu.campus.R
-import kz.iitu.campus.pojo.schedule.ScheduleItem
+import kz.iitu.campus.model.schedule.ScheduleItem
 
 class ScheduleRVA(
     private val list: List<ScheduleItem>

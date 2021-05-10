@@ -1,10 +1,9 @@
 package kz.iitu.campus.ui.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kz.iitu.campus.pojo.schedule.ScheduleDto
-import kz.iitu.campus.pojo.schedule.ScheduleItem
+import kz.iitu.campus.model.schedule.ScheduleDto
+import kz.iitu.campus.model.schedule.ScheduleItem
 
 class HomeViewModel : ViewModel() {
     val list = MutableLiveData<ScheduleDto>()

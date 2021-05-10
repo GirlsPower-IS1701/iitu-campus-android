@@ -1,6 +1,4 @@
-package kz.iitu.campus.pojo.schedule
-
-import java.util.*
+package kz.iitu.campus.model.schedule
 
 data class ScheduleItem(
         val id: Long,

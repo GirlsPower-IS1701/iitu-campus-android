@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kz.iitu.campus.pojo.auth.LoginResponse
+import kz.iitu.campus.model.model.LoginResponse
 import kz.iitu.campus.repository.AuthRepository
 import java.net.ConnectException
 import kotlin.coroutines.CoroutineContext

@@ -1,4 +1,4 @@
-package kz.iitu.campus.pojo.schedule
+package kz.iitu.campus.model.schedule
 
 data class ScheduleDto(
         val id: Long,

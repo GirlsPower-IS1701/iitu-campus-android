@@ -1,4 +1,4 @@
-package kz.iitu.campus.pojo.auth
+package kz.iitu.campus.model.model
 
 data class LoginResponse(
     val access: String,

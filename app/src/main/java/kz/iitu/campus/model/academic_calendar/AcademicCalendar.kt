@@ -1,4 +1,4 @@
-package kz.iitu.campus.pojo.academic_calendar
+package kz.iitu.campus.model.academic_calendar
 
 data class AcademicCalendar(
         val id: Long,
