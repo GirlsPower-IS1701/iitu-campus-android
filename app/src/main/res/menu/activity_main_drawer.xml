@@ -26,7 +26,7 @@
             android:title="@string/chat" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_chat"
+            android:icon="@drawable/ic_gear"
             android:title="@string/settings" />
         <item
             android:id="@+id/nav_logout"
