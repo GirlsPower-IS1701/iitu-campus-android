@@ -41,37 +41,47 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initObservers() {
         viewModel.accessLiveData.observe(this, Observer {
+            if (viewModel.accessLiveData.value == null) {
+                Toast.makeText(
+                    this,
+                    getString(R.string.warning),
+                    Toast.LENGTH_LONG
+                ).show()
+                return@Observer
+            }
+
             UserSession.saveUserDetails(this, it.access, it.refresh)
+            goToMain()
+        })
+        viewModel.errorLiveData.observe(this, Observer {
+            if (!it.isNullOrBlank())
+                Toast.makeText(
+                    this,
+                    it,
+                    Toast.LENGTH_LONG
+                ).show()
         })
     }
 
     private fun initUI() {
         loginBtn.setOnClickListener {
-            if (userNameText.text.toString().isBlank() || passwordText.text.toString()
-                    .isBlank()
-            ) {
-                Toast.makeText(
-                    this,
-                    getString(R.string.login_empty_input_warning),
-                    Toast.LENGTH_LONG
-                ).show()
+            if (userNameText.text.toString().isBlank()) {
+                userName.error = getString(R.string.login_id_empty_input_warning)
                 return@setOnClickListener
+            } else {
+                userName.error = null
             }
-           // viewModel.login(userNameText.text.toString(), passwordText.text.toString())
-            goToMain()
+            if (passwordText.text.toString().isBlank()) {
+                pass.error = getString(R.string.login_pass_empty_input_warning)
+                return@setOnClickListener
+            } else {
+                pass.error = null
+            }
+            viewModel.login(userNameText.text.toString(), passwordText.text.toString())
         }
     }
 
     private fun goToMain() {
-     /*   if (viewModel.accessLiveData.value == null) {
-            Toast.makeText(
-                this,
-                getString(R.string.warning),
-                Toast.LENGTH_LONG
-            ).show()
-            return
-        }*/
-
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }

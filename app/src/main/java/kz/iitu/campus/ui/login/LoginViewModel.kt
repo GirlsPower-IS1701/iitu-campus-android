@@ -1,17 +1,12 @@
 package kz.iitu.campus.ui.login
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kz.iitu.campus.model.model.LoginResponse
 import kz.iitu.campus.repository.AuthRepository
-import java.net.ConnectException
 import kotlin.coroutines.CoroutineContext
 
 class LoginViewModel(
@@ -22,18 +17,23 @@ class LoginViewModel(
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
-    private val accessToken = MutableLiveData<LoginResponse>()
-    val accessLiveData: LiveData<LoginResponse> = accessToken
+    val accessLiveData = MutableLiveData<LoginResponse>()
+    val errorLiveData = MutableLiveData<String>()
 
     fun login(username: String, pass: String) {
         launch {
-            try {
-                val response = authRepository.login(username, pass)
-                response.let {
-                    accessToken.value = it
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    authRepository.login(username, pass)
                 }
-            } catch (e: ConnectException) {
-                Log.d("ntwrk", "No Internet Connection")
+            }.onSuccess {
+                it.let {
+                    accessLiveData.value = it
+                    Log.d("ntwrk", it.toString())
+                }
+            }.onFailure {
+                errorLiveData.value = it.message.toString()
+                Log.d("ntwrk", it.message.toString())
             }
         }
     }
@@ -50,6 +50,6 @@ class LoginViewModel(
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return LoginViewModel(authRepository) as T
         }
-}
+    }
 
 }

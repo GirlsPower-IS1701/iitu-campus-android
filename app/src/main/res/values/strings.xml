@@ -24,7 +24,8 @@
     <string name="login_password_label">Password</string>
     <string name="login_to_system_label">Login to Campus</string>
     <string name="warning">Problem with Internet Connection</string>
-    <string name="login_empty_input_warning">Username or password cannot be empty</string>
+    <string name="login_id_empty_input_warning">Username cannot be empty</string>
+    <string name="login_pass_empty_input_warning">Password cannot be empty</string>
     <string name="do_you_really_want_to_exit">Do you really want to exit?</string>
     <string name="no">No</string>
     <string name="yes">yes</string>
