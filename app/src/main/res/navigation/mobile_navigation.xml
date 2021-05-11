@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_academic_calendar" />
 
     <fragment
+        android:id="@+id/nav_study_plan"
+        android:name="kz.iitu.campus.ui.transcript.IupFragment"
+        android:label="@string/study_plan"
+        tools:layout="@layout/fragment_study_plan" />
+
+    <fragment
         android:id="@+id/nav_profile"
         android:name="kz.iitu.campus.ui.profile.ProfileFragment"
         android:label="@string/profile"

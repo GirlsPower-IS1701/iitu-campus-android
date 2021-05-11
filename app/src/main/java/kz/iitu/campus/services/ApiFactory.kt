@@ -8,7 +8,7 @@ object ApiFactory{
     private const val BASE_URL_LOCAL= "http://10.0.2.2:8000"
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl(BASE_URL_LOCAL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
