@@ -1,5 +1,6 @@
 package kz.iitu.campus.ui.login
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,18 @@ import kotlinx.android.synthetic.main.dialog_exit.*
 import kz.iitu.campus.R
 
 class ExitDialog : DialogFragment() {
+
+    private lateinit var callback: OnExitCallback
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try {
+            if (activity is OnExitCallback)
+                callback = activity as OnExitCallback
+        } catch (e: ClassCastException) {
+            e.printStackTrace()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,8 +49,11 @@ class ExitDialog : DialogFragment() {
         }
 
         btn_ok.setOnClickListener {
-            dismiss()
+            callback.onExit()
         }
     }
 
+    interface OnExitCallback {
+        fun onExit() = Unit
+    }
 }

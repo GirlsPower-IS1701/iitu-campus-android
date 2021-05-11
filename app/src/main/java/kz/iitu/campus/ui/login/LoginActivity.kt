@@ -1,12 +1,15 @@
 package kz.iitu.campus.ui.login
 
 import android.content.Intent
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.view.*
 import kz.iitu.campus.MainActivity
 import kz.iitu.campus.R
 import kz.iitu.campus.repository.AuthRepository
@@ -61,6 +64,9 @@ class LoginActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
         })
+        viewModel.loadingState.observe(this, Observer {
+            loading_state.isVisible = it
+        })
     }
 
     private fun initUI() {
@@ -78,6 +84,7 @@ class LoginActivity : AppCompatActivity() {
                 pass.error = null
             }
             viewModel.login(userNameText.text.toString(), passwordText.text.toString())
+            goToMain()
         }
     }
 

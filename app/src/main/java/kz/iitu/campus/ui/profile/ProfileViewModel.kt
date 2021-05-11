@@ -45,7 +45,7 @@ class ProfileViewModel(
     ) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return LoginViewModel(authRepository) as T
+            return ProfileViewModel(authRepository) as T
         }
     }
 }

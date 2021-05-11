@@ -19,19 +19,23 @@ class LoginViewModel(
 
     val accessLiveData = MutableLiveData<LoginResponse>()
     val errorLiveData = MutableLiveData<String>()
+    val loadingState = MutableLiveData<Boolean>(false)
 
     fun login(username: String, pass: String) {
+        loadingState.value = true
         launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
                     authRepository.login(username, pass)
                 }
             }.onSuccess {
+                loadingState.value = false
                 it.let {
                     accessLiveData.value = it
                     Log.d("ntwrk", it.toString())
                 }
             }.onFailure {
+                loadingState.value = false
                 errorLiveData.value = it.message.toString()
                 Log.d("ntwrk", it.message.toString())
             }
