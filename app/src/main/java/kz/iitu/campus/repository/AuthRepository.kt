@@ -3,6 +3,7 @@ package kz.iitu.campus.repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kz.iitu.campus.model.model.LoginResponse
+import kz.iitu.campus.model.model.StudentProfile
 import kz.iitu.campus.services.ApiClient
 
 class AuthRepository(
@@ -11,6 +12,12 @@ class AuthRepository(
     suspend fun login(username: String, pass: String): LoginResponse? {
         return withContext(Dispatchers.IO) {
             apiClient.login(username, pass)
+        }
+    }
+
+    suspend fun getUserInfo(bearer: String):StudentProfile{
+        return withContext(Dispatchers.IO){
+            apiClient.getUserInfo(bearer)
         }
     }
 }

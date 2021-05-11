@@ -84,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
                 pass.error = null
             }
             viewModel.login(userNameText.text.toString(), passwordText.text.toString())
-            goToMain()
+            //goToMain()
         }
     }
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -11,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import kz.iitu.campus.R
 import kz.iitu.campus.repository.AuthRepository
 import kz.iitu.campus.services.ApiFactory
+import kz.iitu.campus.services.UserSession
 
 class ProfileFragment : Fragment() {
 
@@ -36,7 +38,8 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupViews() {
-        viewModel.getProfile()
+        val bearer: String = "Bearer " + this.context?.let { UserSession.getUserToken(it) }
+        viewModel.getProfile(bearer)
     }
 
     private fun setObservers() {
@@ -50,6 +53,15 @@ class ProfileFragment : Fragment() {
             profile_phone.text = it.student.user.phoneNumber
             profile_name.text = it.student.user.firstName + " " + it.student.user.lastName
             profile_group.text = "IS-1701K"
+        }
+        )
+        viewModel.errorLiveData.observe(viewLifecycleOwner, Observer {
+            if (!it.isNullOrBlank())
+                Toast.makeText(
+                    context,
+                    it,
+                    Toast.LENGTH_LONG
+                ).show()
         })
     }
 }
