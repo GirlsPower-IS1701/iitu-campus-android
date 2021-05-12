@@ -45,4 +45,8 @@
     <string name="rk2">RK2: </string>
     <string name="final_grade">Final Grade: </string>
     <string name="gpa">GPA: </string>
+    <string name="no_data_found">No Data</string>
+    <string name="send_to_my_email">Send to my email</string>
+    <string name="create_certificate">Create Certificate</string>
+    <string name="select_type">Select Type</string>
 </resources>

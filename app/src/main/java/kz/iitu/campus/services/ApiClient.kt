@@ -3,6 +3,7 @@ package kz.iitu.campus.services
 import kz.iitu.campus.model.model.LoginResponse
 import kz.iitu.campus.model.model.StudentProfile
 import kz.iitu.campus.model.model.StudyPlan
+import kz.iitu.campus.model.model.User
 import retrofit2.http.*
 
 interface ApiClient {
@@ -39,7 +40,6 @@ interface ApiClient {
 
     @POST(CREATE_REFERENCE)
     suspend fun createReference(
-        @Field("username") username: String,
-        @Field("password") password: String
-    )
+        @Header("Authorization") bearer: String
+    ): User
 }

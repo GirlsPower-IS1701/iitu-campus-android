@@ -24,6 +24,12 @@
         tools:layout="@layout/fragment_study_plan" />
 
     <fragment
+        android:id="@+id/nav_references"
+        android:name="kz.iitu.campus.ui.ref.RefFragment"
+        android:label="@string/references"
+        tools:layout="@layout/fragment_ref" />
+
+    <fragment
         android:id="@+id/nav_profile"
         android:name="kz.iitu.campus.ui.profile.ProfileFragment"
         android:label="@string/profile"
