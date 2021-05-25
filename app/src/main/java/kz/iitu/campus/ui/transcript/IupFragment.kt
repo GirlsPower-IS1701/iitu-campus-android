@@ -40,7 +40,7 @@ class IupFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        autumnRV.layoutManager =
+        studyPlanRV.layoutManager =
             LinearLayoutManager(this.context)
 
     }
@@ -60,7 +60,7 @@ class IupFragment : Fragment() {
                 ).show()
         })
         viewModel.studyPlan.observe(viewLifecycleOwner, Observer {
-            autumnRV.adapter = StudyPlanRVA(it)
+            studyPlanRV.adapter = StudyPlanRVA(it)
         })
     }
 }
