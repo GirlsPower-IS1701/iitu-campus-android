@@ -1,5 +1,6 @@
 package kz.iitu.campus.services
 
+import kz.iitu.campus.model.academic_calendar.AcademicCalendarDto
 import kz.iitu.campus.model.model.LoginResponse
 import kz.iitu.campus.model.model.StudentProfile
 import kz.iitu.campus.model.model.StudyPlan
@@ -13,12 +14,16 @@ interface ApiClient {
         const val STUDENT = VI + "students/"
         const val GROUPS = VI + "groups/"
         const val REFERENCES = VI + "references/"
+        const val CALENDAR = VI + "calendar/"
 
         const val LOGIN = ACCOUNT + "api/token/"
+        const val GET_CALENDAR = CALENDAR + "api/get_calendar_events"
         const val STUDENT_PROFILE = STUDENT + "api/student_profile"
 
         const val STUDY_PLAN = GROUPS + "api/study_plan/"
         const val CREATE_REFERENCE = REFERENCES + "api/references/"
+
+
     }
 
     @FormUrlEncoded
@@ -42,4 +47,9 @@ interface ApiClient {
     suspend fun createReference(
         @Header("Authorization") bearer: String
     ): User
+
+    @GET(GET_CALENDAR)
+    suspend fun getCalendar(
+        @Header("Authorization") bearer: String
+    ): AcademicCalendarDto
 }
