@@ -29,7 +29,7 @@ private val list: List<CalendarItem>
     ) : RecyclerView.ViewHolder(view) {
         fun bind(item: CalendarItem) {
             view.title.text = item.name
-            view.date.text = item.date
+            view.date.text = item.from_date + " ~ " + item.to_date
         }
     }
 

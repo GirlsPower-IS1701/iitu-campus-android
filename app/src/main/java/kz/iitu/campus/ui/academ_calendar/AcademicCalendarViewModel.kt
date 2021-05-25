@@ -1,39 +1,60 @@
 package kz.iitu.campus.ui.academ_calendar
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.*
 import kz.iitu.campus.model.academic_calendar.AcademicCalendar
+import kz.iitu.campus.model.academic_calendar.AcademicCalendarDto
 import kz.iitu.campus.model.academic_calendar.CalendarItem
+import kz.iitu.campus.model.model.StudyPlan
+import kz.iitu.campus.repository.AcademicCalendarRepository
+import kz.iitu.campus.repository.StudyPlanRepository
+import kz.iitu.campus.ui.transcript.IupViewModel
+import kotlin.coroutines.CoroutineContext
 
-public class AcademicCalendarViewModel : ViewModel() {
-    public val list = MutableLiveData<AcademicCalendar>()
+class AcademicCalendarViewModel(
+    private val academicCalendarRepository: AcademicCalendarRepository
+) : ViewModel(), CoroutineScope {
 
-    fun setList() {
-        val autumnSemesterList = listOf(
-            CalendarItem(0, "Enrollment in the number of students", "19.08.2020 - 24.08.2019"),
-            CalendarItem(1, "Constitution day", "30.08.2020"),
-            CalendarItem(2, "The day of the knowledge", "01.09.2020"),
-            CalendarItem(3, "Fall term start", "02.09.2020"),
-            CalendarItem(4, "Mid term exams", "14.10.2020 - 21.10.2020"),
-            CalendarItem(5, "End of term exams", "09.12.2020 - 14.12.2020")
-        )
+    private val job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 
-        val springSemesterList = listOf(
-            CalendarItem(0, "Enrollment in the number of students", "19.08.2020 - 24.08.2019"),
-            CalendarItem(1, "Constitution day", "30.08.2020"),
-            CalendarItem(2, "The day of the knowledge", "01.09.2020"),
-            CalendarItem(3, "Fall term start", "02.09.2020"),
-            CalendarItem(4, "Mid term exams", "14.10.2020 - 21.10.2020"),
-            CalendarItem(5, "End of term exams", "09.12.2020 - 14.12.2020")
-        )
 
-        val dto = AcademicCalendar(
-            id = 0,
-            name = "IITU ACADEMIC CALENDAR 2020/21",
-            autumnSemesterItems = autumnSemesterList,
-            springSemesterItems = springSemesterList
-        )
+    val calendar = MutableLiveData<AcademicCalendarDto>()
+    val errorLiveData = MutableLiveData<String>()
 
-        list.value = dto
+    fun getCalendar(token: String) {
+        launch {
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    academicCalendarRepository.getCalendar(bearer = token)
+                }
+            }.onSuccess {
+                it.let {
+                    it.also { calendar.value = it }
+                    Log.d("ntwrk", it.toString())
+                }
+            }.onFailure {
+                errorLiveData.value = it.message.toString()
+                Log.d("ntwrk", it.message.toString())
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
+    }
+
+    class CalendarFactory(
+        private val academicCalendarRepository: AcademicCalendarRepository
+    ) : ViewModelProvider.Factory {
+
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return AcademicCalendarViewModel(academicCalendarRepository) as T
+        }
     }
 }
