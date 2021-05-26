@@ -8,9 +8,9 @@ import kotlinx.android.synthetic.main.item_study_plan.view.*
 import kz.iitu.campus.R
 import kz.iitu.campus.model.model.StudyPlan
 
-class StudyPlanRVA(
+class IupRVA(
     private val list: List<StudyPlan>
-) : RecyclerView.Adapter<StudyPlanRVA.ViewHolder>() {
+) : RecyclerView.Adapter<IupRVA.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(list[position])

@@ -60,7 +60,7 @@ class IupFragment : Fragment() {
                 ).show()
         })
         viewModel.studyPlan.observe(viewLifecycleOwner, Observer {
-            studyPlanRV.adapter = StudyPlanRVA(it)
+            studyPlanRV.adapter = IupRVA(it)
         })
     }
 }
