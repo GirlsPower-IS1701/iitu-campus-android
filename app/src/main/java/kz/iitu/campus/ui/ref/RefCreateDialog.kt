@@ -1,5 +1,6 @@
 package kz.iitu.campus.ui.ref
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +12,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.dialog_create_ref.*
 import kotlinx.android.synthetic.main.dialog_create_ref.loading_state
+import kotlinx.android.synthetic.main.dialog_exit.*
 import kotlinx.android.synthetic.main.dialog_exit.btn_ok
 import kz.iitu.campus.R
 import kz.iitu.campus.repository.RefRepository
@@ -49,8 +52,8 @@ class RefCreateDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val items = listOf("Сertificate from the place of study")
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, R.id.textv, items)
-        (menu.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, R.id.types, items)
+        (type)?.setAdapter(adapter)
         setListeners()
         setObservers()
     }
@@ -64,6 +67,15 @@ class RefCreateDialog : DialogFragment() {
                     Toast.LENGTH_LONG
                 ).show()
         })
+        viewModel.user.observe(viewLifecycleOwner, Observer {
+            if (!it.isNullOrBlank())
+                Toast.makeText(
+                    context,
+                    it,
+                    Toast.LENGTH_LONG
+                ).show()
+            dismiss()
+        })
         viewModel.loadingState.observe(this, Observer {
             loading_state.isVisible = it
         })
@@ -75,5 +87,6 @@ class RefCreateDialog : DialogFragment() {
             viewModel.createRef(bearer)
         }
     }
+
 
 }
