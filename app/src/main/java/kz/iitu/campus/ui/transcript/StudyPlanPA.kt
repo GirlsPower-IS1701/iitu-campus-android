@@ -2,26 +2,34 @@ package kz.iitu.campus.ui.transcript
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentPagerAdapter
 import kz.iitu.campus.ui.ref.RefFragment
 
-class StudyPlanPA(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+class StudyPlanPA(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        return when (position) {
-            0 -> IupFragment()
-            1 -> RefFragment()
-            else -> IupFragment()
+        var fragment: Fragment?
+        if (position == 0) {
+            fragment = IupFragment()
+        } else {
+            fragment = RefFragment()
         }
+        return fragment
     }
 
-    override fun getCount(): Int = 2
+    override fun getCount(): Int {
+        return 2
+    }
+
 
     override fun getPageTitle(position: Int): CharSequence {
-        return when (position) {
-            0 -> "Study Plan"
-            1 -> "My Transcripts"
-            else -> ""
+        var fragment: String?
+
+        if (position == 0) {
+            fragment = "Study Plan"
+        } else {
+            fragment = "My Transcripts"
         }
+        return fragment
     }
 }

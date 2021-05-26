@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
+import kotlinx.android.synthetic.main.fragment_study_plan_main.*
 import kz.iitu.campus.R
 
 class StudyPlanFragment: Fragment() {
@@ -24,5 +25,6 @@ class StudyPlanFragment: Fragment() {
         adapter = StudyPlanPA(childFragmentManager)
         viewPager = view.findViewById(R.id.pager)
         viewPager.adapter = adapter
+        this.tab_layout.setupWithViewPager(this.viewPager)
     }
 }
