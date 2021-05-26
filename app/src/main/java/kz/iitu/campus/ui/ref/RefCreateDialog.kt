@@ -39,7 +39,7 @@ class RefCreateDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.dialog_exit, container, false)
+        return inflater.inflate(R.layout.dialog_create_ref, container, false)
     }
 
     override fun onStart() {
@@ -52,8 +52,8 @@ class RefCreateDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val items = listOf("Сertificate from the place of study")
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
-        (menu.editText as? AutoCompleteTextView)?.setAdapter(adapter)
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, R.id.types, items)
+        (type)?.setAdapter(adapter)
         setListeners()
         setObservers()
     }
@@ -66,6 +66,15 @@ class RefCreateDialog : DialogFragment() {
                     it,
                     Toast.LENGTH_LONG
                 ).show()
+        })
+        viewModel.user.observe(viewLifecycleOwner, Observer {
+            if (!it.isNullOrBlank())
+                Toast.makeText(
+                    context,
+                    it,
+                    Toast.LENGTH_LONG
+                ).show()
+            dismiss()
         })
         viewModel.loadingState.observe(this, Observer {
             loading_state.isVisible = it

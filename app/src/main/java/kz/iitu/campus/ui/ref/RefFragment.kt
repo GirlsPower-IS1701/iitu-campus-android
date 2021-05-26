@@ -23,8 +23,12 @@ class RefFragment
         viewmodel =
             ViewModelProvider(this).get(AcademicCalendarViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_ref, container, false)
-        setupViews()
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupViews()
     }
 
     private fun setupViews() {
