@@ -3,7 +3,6 @@ package kz.iitu.campus.ui.transcript
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import kz.iitu.campus.ui.ref.RefFragment
 
 class StudyPlanPA(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
@@ -12,7 +11,7 @@ class StudyPlanPA(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         if (position == 0) {
             fragment = IupFragment()
         } else {
-            fragment = RefFragment()
+            fragment = TranscriptFragment()
         }
         return fragment
     }

@@ -49,7 +49,7 @@ class RefCreateDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val items = listOf("Сertificate from the place of study")
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, R.id.textv, items)
         (menu.editText as? AutoCompleteTextView)?.setAdapter(adapter)
         setListeners()
         setObservers()
@@ -75,6 +75,5 @@ class RefCreateDialog : DialogFragment() {
             viewModel.createRef(bearer)
         }
     }
-
 
 }
