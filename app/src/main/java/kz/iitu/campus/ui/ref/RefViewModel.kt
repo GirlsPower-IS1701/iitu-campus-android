@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.*
-import kz.iitu.campus.model.model.User
 import kz.iitu.campus.repository.RefRepository
 import kotlin.coroutines.CoroutineContext
 
