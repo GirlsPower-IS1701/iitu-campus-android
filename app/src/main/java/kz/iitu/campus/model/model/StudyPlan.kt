@@ -6,5 +6,5 @@ data class StudyPlan(
     val pk2: Float,
     val final: Float,
     val grade_letter: String,
-    val gpa: Int
+    val gpa: Float
 )
