@@ -18,7 +18,7 @@ import kz.iitu.campus.services.UserSession
 import kz.iitu.campus.ui.transcript.IupRVA
 
 class RefFragment
-    : Fragment() {
+    : Fragment(), RefCreateDialog.OnRefCreatedCallback {
 
     private val viewModel by lazy {
         ViewModelProviders.of(
@@ -77,4 +77,9 @@ class RefFragment
         })
     }
 
+    override fun onRefCreated() {
+        super.onRefCreated()
+        val bearer: String = "Bearer " + this.context?.let { UserSession.getUserToken(it) }
+        viewModel.getHistory(bearer)
+    }
 }
