@@ -20,8 +20,6 @@ class RefViewModel(
     val user = MutableLiveData<String>()
     val errorLiveData = MutableLiveData<String>()
     val loadingState = MutableLiveData<Boolean>(false)
-
-
     val history = MutableLiveData<List<RefHistory>>()
 
 

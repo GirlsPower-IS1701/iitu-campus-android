@@ -49,5 +49,7 @@
     <string name="no_data_found">No Data</string>
     <string name="send_to_my_email">Send to my email</string>
     <string name="create_certificate">Create Certificate</string>
+    <string name="create_transcript">Create Current Transcript</string>
     <string name="select_type">Select Type</string>
+    <string name="we_will_send_your_current_transcript_report_to_your_e_mail">We will send your current transcript report to your e-mail</string>
 </resources>

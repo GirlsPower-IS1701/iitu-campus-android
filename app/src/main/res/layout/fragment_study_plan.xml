@@ -23,7 +23,7 @@
                 android:layout_gravity="center"
                 android:text="1st Course / Fall Term"
                 android:textColor="@color/primary_text_color"
-                android:textSize="@dimen/large_text_size" />
+                android:textSize="@dimen/medium_text_size" />
 
             <ImageView
                 android:id="@+id/ec_first"
@@ -54,9 +54,9 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="1nd Course / Spring Term"
+                android:text="1st Course / Spring Term"
                 android:textColor="@color/primary_text_color"
-                android:textSize="@dimen/large_text_size" />
+                android:textSize="@dimen/medium_text_size" />
 
             <ImageView
                 android:id="@+id/ec_second"

@@ -20,7 +20,8 @@ interface ApiClient {
         const val STUDY_PLAN = GROUPS + "api/study_plan/"
 
         const val CREATE_REFERENCE = REFERENCES + "api/references/"
-
+        const val CREATE_TRANSCRIPT = GROUPS + "api/get_gpa/"
+        const val GET_TRANSCRIPT_HISTORY = GROUPS + "api/gpa_history/"
         const val GET_REF_HISTORY = CREATE_REFERENCE + "history"
     }
 
@@ -58,4 +59,13 @@ interface ApiClient {
         @Header("Authorization") bearer: String
     ): List<RefHistory>
 
+    @GET(CREATE_TRANSCRIPT)
+    suspend fun createTranscript(
+        @Header("Authorization") bearer: String
+    ): User
+
+    @GET(GET_TRANSCRIPT_HISTORY)
+    suspend fun getTranscriptHistory(
+        @Header("Authorization") bearer: String
+    ): List<StudyPlanHistory>
 }
