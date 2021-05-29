@@ -16,7 +16,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -35,28 +38,28 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:text="@string/rk1"
-                    android:textSize="@dimen/standard_text_size"
-                    android:textColor="@color/secondary_text_color"
-                    android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/rk1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:textAlignment="textEnd"
-                    android:text="90"
-                    android:textColor="@color/primary_text_color"
-                    android:textSize="@dimen/standard_text_size"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/rk1"
+                        android:textSize="@dimen/standard_text_size"
+                        android:textColor="@color/secondary_text_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/rk1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd"
+                        android:text="90"
+                        android:textColor="@color/primary_text_color"
+                        android:textSize="@dimen/standard_text_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,7 +69,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:text="@string/rk2"
                     android:textSize="@dimen/standard_text_size"
@@ -77,7 +79,6 @@
                     android:id="@+id/rk2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:textAlignment="textEnd"
                     android:text="90"
@@ -94,7 +95,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:text="@string/final_grade"
                     android:textSize="@dimen/standard_text_size"
@@ -105,7 +105,6 @@
                     android:id="@+id/final_grade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:textAlignment="textEnd"
                     android:text="90"
@@ -121,18 +120,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:text="@string/gpa"
                     android:textSize="@dimen/standard_text_size"
-                    android:textColor="@color/secondary_text_color"
+                    android:textColor="@color/primary_blue"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/gpa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:textAlignment="textEnd"
                     android:text="90"

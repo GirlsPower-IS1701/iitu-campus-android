@@ -10,10 +10,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_academic_calendar.*
+import kotlinx.android.synthetic.main.fragment_study_plan.*
 import kz.iitu.campus.R
 import kz.iitu.campus.repository.StudyPlanRepository
 import kz.iitu.campus.services.ApiFactory
 import kz.iitu.campus.services.UserSession
+import kz.iitu.campus.ui.utils.AnimRecipes.collapseExpand
 
 class IupFragment : Fragment() {
 
@@ -33,19 +35,25 @@ class IupFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_study_plan, container, false)
-        setupViews()
-        setObservers()
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        studyPlanRV.layoutManager =
-            LinearLayoutManager(this.context)
 
+        setupViews()
+
+        setObservers()
+
+        setListeners()
     }
 
     private fun setupViews() {
+        first_semesterRVA.layoutManager =
+            LinearLayoutManager(this.context)
+        second_semesterRVA.layoutManager =
+            LinearLayoutManager(this.context)
+
         val bearer: String = "Bearer " + this.context?.let { UserSession.getUserToken(it) }
         viewModel.getStudyPlan(bearer)
     }
@@ -60,7 +68,17 @@ class IupFragment : Fragment() {
                 ).show()
         })
         viewModel.studyPlan.observe(viewLifecycleOwner, Observer {
-            studyPlanRV.adapter = IupRVA(it.firstsemester)
+            first_semesterRVA.adapter = IupRVA(it.firstsemester)
+            second_semesterRVA.adapter = IupRVA(it.secondsemester)
         })
+    }
+
+    private fun setListeners() {
+        ec_first.setOnClickListener{
+            collapseExpand(ec_first, first_semesterRVA)
+        }
+        ec_second.setOnClickListener{
+            collapseExpand(ec_second, second_semesterRVA)
+        }
     }
 }
