@@ -30,7 +30,7 @@ class RefHistoryRVA (
             fun bind(item: RefHistory) {
                 view.ref_type.text = item.reference_type_id.name
 
-                val format = SimpleDateFormat("dd.MM.yyyy")
+                val format = SimpleDateFormat("dd.MM.yyyy hh:mm")
                 view.date.text = format.format(item.created_at)
             }
         }
