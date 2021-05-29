@@ -32,7 +32,12 @@ class MainActivity : AppCompatActivity(), ExitDialog.OnExitCallback {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home
+                R.id.nav_home,
+                R.id.nav_profile,
+                R.id.nav_academic_calendar,
+                R.id.nav_references,
+                R.id.nav_logout,
+                R.id.nav_study_plan
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
