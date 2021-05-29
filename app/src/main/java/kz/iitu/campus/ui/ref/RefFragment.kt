@@ -9,13 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_academic_calendar.*
 import kotlinx.android.synthetic.main.fragment_ref.*
 import kz.iitu.campus.R
 import kz.iitu.campus.repository.RefRepository
 import kz.iitu.campus.services.ApiFactory
 import kz.iitu.campus.services.UserSession
-import kz.iitu.campus.ui.transcript.IupRVA
 
 class RefFragment
     : Fragment(), RefCreateDialog.OnRefCreatedCallback {

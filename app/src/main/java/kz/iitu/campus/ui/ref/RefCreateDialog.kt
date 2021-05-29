@@ -1,5 +1,6 @@
 package kz.iitu.campus.ui.ref
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,18 @@ import kz.iitu.campus.services.ApiFactory
 import kz.iitu.campus.services.UserSession
 
 class RefCreateDialog : DialogFragment() {
+
+    private lateinit var callback: OnRefCreatedCallback
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        try {
+            if (parentFragment is OnRefCreatedCallback)
+                callback = parentFragment as OnRefCreatedCallback
+        } catch (e: ClassCastException) {
+            e.printStackTrace()
+        }
+    }
 
     private val viewModel by lazy {
         ViewModelProviders.of(
@@ -62,6 +75,7 @@ class RefCreateDialog : DialogFragment() {
                     it,
                     Toast.LENGTH_LONG
                 ).show()
+            dismiss()
         })
         viewModel.user.observe(viewLifecycleOwner, Observer {
             if (!it.isNullOrBlank())
@@ -70,6 +84,7 @@ class RefCreateDialog : DialogFragment() {
                     it,
                     Toast.LENGTH_LONG
                 ).show()
+            callback.onRefCreated()
             dismiss()
         })
         viewModel.loadingState.observe(this, Observer {
@@ -84,5 +99,8 @@ class RefCreateDialog : DialogFragment() {
         }
     }
 
+    interface OnRefCreatedCallback {
+        fun onRefCreated() = Unit
+    }
 
 }
