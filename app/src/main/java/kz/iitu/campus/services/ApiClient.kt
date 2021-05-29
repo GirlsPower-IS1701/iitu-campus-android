@@ -39,7 +39,7 @@ interface ApiClient {
     @GET(STUDY_PLAN)
     suspend fun getStudyPlan(
         @Header("Authorization") bearer: String
-    ): List<StudyPlan>
+    ): StudyPlanDto
 
     @FormUrlEncoded
     @POST(CREATE_REFERENCE)

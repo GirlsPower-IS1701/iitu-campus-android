@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.*
 import kz.iitu.campus.model.model.StudyPlan
+import kz.iitu.campus.model.model.StudyPlanDto
 import kz.iitu.campus.repository.StudyPlanRepository
 import kotlin.coroutines.CoroutineContext
 
@@ -17,7 +18,7 @@ class IupViewModel(
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
-    val studyPlan = MutableLiveData<List<StudyPlan>>()
+    val studyPlan = MutableLiveData<StudyPlanDto>()
     val errorLiveData = MutableLiveData<String>()
 
     fun getStudyPlan(token: String) {

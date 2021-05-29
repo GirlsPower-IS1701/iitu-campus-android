@@ -8,3 +8,8 @@ data class StudyPlan(
     val grade_letter: String,
     val gpa: Float
 )
+
+data class StudyPlanDto(
+    val firstsemester: List<StudyPlan>,
+    val secondsemester: List<StudyPlan>
+)
