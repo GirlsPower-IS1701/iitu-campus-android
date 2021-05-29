@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_ref_history.view.*
 import kz.iitu.campus.R
 import kz.iitu.campus.model.model.RefHistory
+import java.text.SimpleDateFormat
 
 class RefHistoryRVA (
     private val list: List<RefHistory>
@@ -28,7 +29,9 @@ class RefHistoryRVA (
         ) : RecyclerView.ViewHolder(view) {
             fun bind(item: RefHistory) {
                 view.ref_type.text = item.reference_type_id.name
-                view.date.text = item.created_at.time.toString()
+
+                val format = SimpleDateFormat("dd.MM.yyyy")
+                view.date.text = format.format(item.created_at)
             }
         }
 

@@ -3,41 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_8sdp"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="5">
+        android:layout_margin="@dimen/_10sdp"
+        android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:contentDescription="@string/nav_header_desc"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
-            app:srcCompat="@drawable/ic_references" />
-    </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
 
-    <TextView
-        android:id="@+id/ref_type"
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:contentDescription="@string/nav_header_desc"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                app:srcCompat="@drawable/ic_references" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/ref_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="3"
+            android:text="type"
+            android:textColor="@color/primary_text_color"
+            android:textSize="@dimen/standard_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_weight="3"
+            android:text="23.04.23"
+            android:textAlignment="textEnd"
+            android:textColor="@color/primary_text_color"
+            android:textSize="@dimen/standard_text_size" />
+    </LinearLayout>
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:text="type"
-        android:layout_gravity="bottom"
-        android:textColor="@color/primary_text_color"
-        android:textSize="@dimen/standard_text_size"
-        android:textStyle="bold" />
+        android:background="@color/primary_text_color"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_height="1dp"/>
 
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:text="23.04.23"
-        android:layout_gravity="bottom|end"
-        android:textAlignment="textEnd"
-        android:textColor="@color/primary_text_color"
-        android:textSize="@dimen/standard_text_size" />
 </LinearLayout>
