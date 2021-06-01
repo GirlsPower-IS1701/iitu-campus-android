@@ -9,11 +9,12 @@ import kz.iitu.campus.R
 import kz.iitu.campus.model.schedule.Timetable
 
 class ScheduleRVA(
-    private val list: List<Timetable>
+    private val list: List<Timetable>,
+    val group: String
 ) : RecyclerView.Adapter<ScheduleRVA.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(list[position])
+        holder.bind(list[position], group)
 
     override fun getItemCount(): Int = list.size
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -26,9 +27,9 @@ class ScheduleRVA(
     inner class ViewHolder(
         private val view: View
     ) : RecyclerView.ViewHolder(view) {
-        fun bind(item: Timetable) {
+        fun bind(item: Timetable, group: String) {
             view.subjectName.text = item.subject
-            view.group.text = "IS_1701K"
+            view.group.text = group
             view.room.text = item.room_number
             view.teacher.text = item.teacher_name + " " + item.teacher_surname
             view.startTime.text = item.start_time.take(5)

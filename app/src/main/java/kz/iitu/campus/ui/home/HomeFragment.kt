@@ -70,16 +70,16 @@ class HomeFragment : Fragment(), FilterDialog.OnFilterSelectedCallback {
 
     private fun setObservers() {
         viewModel.selectedFilter.observe(viewLifecycleOwner, Observer {
-            if (it == 0){
-               filter.text = "Filter By: Show My Group Schedule"
+            if (it == 0) {
+                filter.text = "Filter By: Show My Group Schedule"
             }
-            if (it == 1){
+            if (it == 1) {
                 filter.text = "Filter By Teacher"
             }
-            if (it == 3){
+            if (it == 3) {
                 filter.text = "Filter By Group"
             }
-            if (it == 5){
+            if (it == 5) {
                 filter.text = "Filter By Room"
             }
         })
@@ -92,23 +92,23 @@ class HomeFragment : Fragment(), FilterDialog.OnFilterSelectedCallback {
                 ).show()
         })
         viewModel.mondayList.observe(viewLifecycleOwner, Observer {
-            mondayRv.adapter = ScheduleRVA(it)
+            mondayRv.adapter = ScheduleRVA(it, viewModel.group.value!!)
         })
 
         viewModel.tuesdayList.observe(viewLifecycleOwner, Observer {
-            tuesdayRv.adapter = ScheduleRVA(it)
+            tuesdayRv.adapter = ScheduleRVA(it, viewModel.group.value!!)
         })
 
         viewModel.wednesdayList.observe(viewLifecycleOwner, Observer {
-            wednesdayRv.adapter = ScheduleRVA(it)
+            wednesdayRv.adapter = ScheduleRVA(it, viewModel.group.value!!)
         })
 
         viewModel.thursdayList.observe(viewLifecycleOwner, Observer {
-            thursdayRv.adapter = ScheduleRVA(it)
+            thursdayRv.adapter = ScheduleRVA(it, viewModel.group.value!!)
         })
 
         viewModel.fridayList.observe(viewLifecycleOwner, Observer {
-            fridayRV.adapter = ScheduleRVA(it)
+            fridayRV.adapter = ScheduleRVA(it, viewModel.group.value!!)
         })
         viewModel.loadingState.observe(viewLifecycleOwner, Observer {
             loading_state.isVisible = it

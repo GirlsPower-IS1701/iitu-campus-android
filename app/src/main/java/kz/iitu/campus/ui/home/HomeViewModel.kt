@@ -30,6 +30,7 @@ class HomeViewModel(
     val groupList = MutableLiveData<List<Group>>()
 
     val errorLiveData = MutableLiveData<String>()
+    val group = MutableLiveData<String>("IS-1701K")
     val selectedFilter = MutableLiveData<Int>(0)
     val loadingState = MutableLiveData<Boolean>(false)
 
@@ -79,7 +80,10 @@ class HomeViewModel(
             }.onSuccess {
                 loadingState.value = false
                 it.let {
-                    it.also { setDayOfWeeks(it) }
+                    it.also {
+                        group.value = "IS-1701K"
+                        setDayOfWeeks(it)
+                    }
                     Log.d("ntwrk", it.toString())
                 }
             }.onFailure {
@@ -100,7 +104,10 @@ class HomeViewModel(
             }.onSuccess {
                 loadingState.value = false
                 it.let {
-                    it.also { setDayOfWeeks(it) }
+                    it.also {
+                        group.value = "IS-1701K"
+                        setDayOfWeeks(it)
+                    }
                     Log.d("ntwrk", it.toString())
                 }
             }.onFailure {
@@ -111,7 +118,7 @@ class HomeViewModel(
         }
     }
 
-    fun getGroupTimeTableByGroup(token: String,groupId: Int) {
+    fun getGroupTimeTableByGroup(token: String, groupId: Int) {
         loadingState.value = true
         launch {
             kotlin.runCatching {
@@ -121,7 +128,10 @@ class HomeViewModel(
             }.onSuccess {
                 loadingState.value = false
                 it.let {
-                    it.also { setDayOfWeeks(it.timetable) }
+                    it.also {
+                        group.value = it.group
+                        setDayOfWeeks(it.timetable)
+                    }
                     Log.d("ntwrk", it.toString())
                 }
             }.onFailure {
@@ -142,7 +152,10 @@ class HomeViewModel(
             }.onSuccess {
                 loadingState.value = false
                 it.let {
-                    it.also { setDayOfWeeks(it) }
+                    it.also {
+                        group.value = "IS-1701K"
+                        setDayOfWeeks(it)
+                    }
                     Log.d("ntwrk", it.toString())
                 }
             }.onFailure {
@@ -155,24 +168,24 @@ class HomeViewModel(
 
     private fun setDayOfWeeks(list: List<Timetable>) {
         val monday = mutableListOf<Timetable>()
-        val tuesday= mutableListOf<Timetable>()
+        val tuesday = mutableListOf<Timetable>()
         val wednesday = mutableListOf<Timetable>()
         val thursday = mutableListOf<Timetable>()
-        val friday= mutableListOf<Timetable>()
+        val friday = mutableListOf<Timetable>()
         for (timetable in list) {
-            if (timetable.day_of_week==1) {
+            if (timetable.day_of_week == 1) {
                 monday.add(timetable)
             }
-            if (timetable.day_of_week==1) {
+            if (timetable.day_of_week == 1) {
                 tuesday.add(timetable)
             }
-            if (timetable.day_of_week==3) {
+            if (timetable.day_of_week == 3) {
                 wednesday.add(timetable)
             }
-            if (timetable.day_of_week==4) {
+            if (timetable.day_of_week == 4) {
                 thursday.add(timetable)
             }
-            if (timetable.day_of_week==5) {
+            if (timetable.day_of_week == 5) {
                 friday.add(timetable)
             }
         }
