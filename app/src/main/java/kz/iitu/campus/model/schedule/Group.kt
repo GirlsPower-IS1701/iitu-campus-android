@@ -8,3 +8,8 @@ data class Group(
         return name
     }
 }
+
+data class GroupDto(
+    val group: String,
+    val timetable: List<Timetable>
+)

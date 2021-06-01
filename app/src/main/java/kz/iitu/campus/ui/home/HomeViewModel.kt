@@ -121,7 +121,7 @@ class HomeViewModel(
             }.onSuccess {
                 loadingState.value = false
                 it.let {
-                    it.also { setDayOfWeeks(it) }
+                    it.also { setDayOfWeeks(it.timetable) }
                     Log.d("ntwrk", it.toString())
                 }
             }.onFailure {

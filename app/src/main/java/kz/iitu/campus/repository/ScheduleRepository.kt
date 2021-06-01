@@ -3,6 +3,7 @@ package kz.iitu.campus.repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kz.iitu.campus.model.schedule.Group
+import kz.iitu.campus.model.schedule.GroupDto
 import kz.iitu.campus.model.schedule.Staff
 import kz.iitu.campus.model.schedule.Timetable
 import kz.iitu.campus.services.ApiClient
@@ -36,7 +37,7 @@ class ScheduleRepository (
         }
     }
 
-    suspend fun getGroupTimetableByGroup(bearer: String, id: Int): List<Timetable> {
+    suspend fun getGroupTimetableByGroup(bearer: String, id: Int): GroupDto {
         return withContext(Dispatchers.IO) {
             apiClient.getTimetableByGroup(bearer, id)
         }

@@ -3,6 +3,7 @@ package kz.iitu.campus.services
 import kz.iitu.campus.model.academic_calendar.AcademicCalendarDto
 import kz.iitu.campus.model.model.*
 import kz.iitu.campus.model.schedule.Group
+import kz.iitu.campus.model.schedule.GroupDto
 import kz.iitu.campus.model.schedule.Staff
 import kz.iitu.campus.model.schedule.Timetable
 import retrofit2.http.*
@@ -108,7 +109,7 @@ interface ApiClient {
     suspend fun getTimetableByGroup(
         @Header("Authorization") bearer: String,
         @Field("group_id") id: Int
-    ): List<Timetable>
+    ): GroupDto
 
     @FormUrlEncoded
     @POST(GET_GROUP_TIMETABLE_BY_ROOM)
