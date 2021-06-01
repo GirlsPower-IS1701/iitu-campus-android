@@ -30,6 +30,7 @@ class HomeViewModel(
     val groupList = MutableLiveData<List<Group>>()
 
     val errorLiveData = MutableLiveData<String>()
+    val selectedFilter = MutableLiveData<Int>(0)
 
     fun getStaffList(token: String) {
         launch {

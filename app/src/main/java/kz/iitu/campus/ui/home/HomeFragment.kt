@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.dialog_filter.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kz.iitu.campus.R
 import kz.iitu.campus.repository.ScheduleRepository
@@ -16,7 +17,7 @@ import kz.iitu.campus.services.ApiFactory
 import kz.iitu.campus.services.UserSession
 import kz.iitu.campus.ui.utils.AnimRecipes.collapseExpand
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), FilterDialog.OnFilterSelectedCallback {
 
     private val viewModel by lazy {
         ViewModelProviders.of(
@@ -66,6 +67,20 @@ class HomeFragment : Fragment() {
     }
 
     private fun setObservers() {
+        viewModel.selectedFilter.observe(viewLifecycleOwner, Observer {
+            if (it == 0){
+               filter.text = "Filter By: Show My Group Schedule"
+            }
+            if (it == 1){
+                filter.text = "Filter By Teacher"
+            }
+            if (it == 3){
+                filter.text = "Filter By Group"
+            }
+            if (it == 5){
+                filter.text = "Filter By Room"
+            }
+        })
         viewModel.errorLiveData.observe(viewLifecycleOwner, Observer {
             if (!it.isNullOrBlank())
                 Toast.makeText(
@@ -96,20 +111,55 @@ class HomeFragment : Fragment() {
     }
 
     private fun setListeners() {
-        ec_monday.setOnClickListener{
+        ec_monday.setOnClickListener {
             collapseExpand(ec_monday, mondayRv)
         }
-        ec_tuesday.setOnClickListener{
+        ec_tuesday.setOnClickListener {
             collapseExpand(ec_tuesday, tuesdayRv)
         }
-        ec_wednesday.setOnClickListener{
+        ec_wednesday.setOnClickListener {
             collapseExpand(ec_wednesday, wednesdayRv)
         }
-        ec_thursday.setOnClickListener{
+        ec_thursday.setOnClickListener {
             collapseExpand(ec_thursday, thursdayRv)
         }
-        ec_friday.setOnClickListener{
+        ec_friday.setOnClickListener {
             collapseExpand(ec_friday, fridayRV)
         }
+        btn_filter.setOnClickListener {
+            if (viewModel.selectedFilter.value == null)
+                viewModel.selectedFilter.value = 0
+            val dialog = FilterDialog.newInstance(viewModel.selectedFilter.value!!)
+            dialog.show(childFragmentManager, "dialog")
+        }
+    }
+
+
+    override fun onMyGroupChecked() {
+        val bearer: String = "Bearer " + this.context?.let { UserSession.getUserToken(it) }
+        super.onMyGroupChecked()
+        viewModel.selectedFilter.value = 0
+        viewModel.getGroupTimeTable(bearer)
+    }
+
+    override fun onByStaffChecked(id: Int) {
+        val bearer: String = "Bearer " + this.context?.let { UserSession.getUserToken(it) }
+        super.onByStaffChecked(id)
+        viewModel.selectedFilter.value = 1
+        viewModel.getGroupTimeTableByStaff(bearer, id)
+    }
+
+    override fun onByGroupChecked(id: Int) {
+        val bearer: String = "Bearer " + this.context?.let { UserSession.getUserToken(it) }
+        super.onByGroupChecked(id)
+        viewModel.selectedFilter.value = 3
+        viewModel.getGroupTimeTableByGroup(bearer, id)
+    }
+
+    override fun onByRoomChecked(room: Int) {
+        val bearer: String = "Bearer " + this.context?.let { UserSession.getUserToken(it) }
+        super.onByRoomChecked(room)
+        viewModel.selectedFilter.value = 5
+        viewModel.getGroupTimeTableByRoom(bearer, room)
     }
 }
