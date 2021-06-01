@@ -32,10 +32,10 @@ class NewsRVA (
         fun bind(item: Notification, onClickItem: (Notification) -> Unit) {
             view.title.text = item.title
             view.body.text = item.body
-            val format = SimpleDateFormat("dd.MM.yyyy hh:mm")
+            val format = SimpleDateFormat("dd.MM.yyyy")
             view.date.text = format.format(item.created_at)
 
-            view.setOnClickListener{
+            view.btn_go.setOnClickListener{
                 onClickItem(item)
             }
         }
