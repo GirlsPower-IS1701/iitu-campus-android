@@ -2,6 +2,9 @@ package kz.iitu.campus.services
 
 import kz.iitu.campus.model.academic_calendar.AcademicCalendarDto
 import kz.iitu.campus.model.model.*
+import kz.iitu.campus.model.schedule.Group
+import kz.iitu.campus.model.schedule.Staff
+import kz.iitu.campus.model.schedule.Timetable
 import retrofit2.http.*
 
 interface ApiClient {
@@ -13,6 +16,7 @@ interface ApiClient {
         const val REFERENCES = VI + "references/"
         const val CALENDAR = VI + "calendar/"
         const val NEWS = VI + "news/"
+        const val TIMETABLES = VI + "timetables/"
 
         const val LOGIN = ACCOUNT + "api/token/"
         const val GET_CALENDAR = CALENDAR + "api/get_calendar_events"
@@ -21,10 +25,20 @@ interface ApiClient {
         const val STUDY_PLAN = GROUPS + "api/study_plan/"
 
         const val CREATE_REFERENCE = REFERENCES + "api/references/"
+        const val GET_REF_HISTORY = CREATE_REFERENCE + "history"
+
         const val CREATE_TRANSCRIPT = GROUPS + "api/get_gpa/"
         const val GET_TRANSCRIPT_HISTORY = GROUPS + "api/gpa_history/"
-        const val GET_REF_HISTORY = CREATE_REFERENCE + "history"
+
         const val GET_NEWS = NEWS + "api/get_news/"
+
+        const val GET_GROUP_TIMETABLE = TIMETABLES + "api/timetable/"
+        const val GET_GROUP_TIMETABLE_BY_STAFF = GET_GROUP_TIMETABLE + "filter_by_staff/"
+        const val GET_GROUP_TIMETABLE_BY_ROOM = GET_GROUP_TIMETABLE + "filter_by_room/"
+        const val GET_GROUP_TIMETABLE_BY_GROUP = GET_GROUP_TIMETABLE + "filter_by_group/"
+
+        const val GET_STAFF_LIST = GET_GROUP_TIMETABLE + "list_of_staff/"
+        const val GET_GROUP_LIST = GET_GROUP_TIMETABLE + "list_of_group/"
     }
 
     @FormUrlEncoded
@@ -75,4 +89,41 @@ interface ApiClient {
     suspend fun getNews(
         @Header("Authorization") bearer: String
     ): List<Notification>
+
+    @GET(GET_GROUP_TIMETABLE)
+    suspend fun getTimetable(
+        @Header("Authorization") bearer: String
+    ): List<Timetable>
+
+    @FormUrlEncoded
+    @GET(GET_GROUP_TIMETABLE_BY_STAFF)
+    suspend fun getTimetableByStaff(
+        @Header("Authorization") bearer: String,
+        @Field("staff_id") id: Int
+    ): List<Timetable>
+
+    @FormUrlEncoded
+    @GET(
+        GET_GROUP_TIMETABLE_BY_GROUP)
+    suspend fun getTimetableByGroup(
+        @Header("Authorization") bearer: String,
+        @Field("group_id") id: Int
+    ): List<Timetable>
+
+    @FormUrlEncoded
+    @GET(GET_GROUP_TIMETABLE_BY_ROOM)
+    suspend fun getTimetableByRoom(
+        @Header("Authorization") bearer: String,
+        @Field("room_number") room_number: Int
+    ): List<Timetable>
+
+    @GET(GET_STAFF_LIST)
+    suspend fun getStaffList(
+        @Header("Authorization") bearer: String
+    ): List<Staff>
+
+    @GET(GET_GROUP_LIST)
+    suspend fun getGroupList(
+        @Header("Authorization") bearer: String
+    ): List<Group>
 }
