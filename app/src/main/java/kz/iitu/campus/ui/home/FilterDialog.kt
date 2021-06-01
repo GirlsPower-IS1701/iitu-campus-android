@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioGroup
 import android.widget.Toast
@@ -23,6 +24,8 @@ class FilterDialog : DialogFragment() {
 
     private lateinit var callback: OnFilterSelectedCallback
     private var selectedFilter: Int = 0
+    private var selectedStaff: Int = 1
+    private var selectedGroup: Int = 1
 
     private val viewModel by lazy {
         ViewModelProviders.of(
@@ -102,6 +105,12 @@ class FilterDialog : DialogFragment() {
     }
 
     private fun setObservers() {
+        staffs.setOnItemClickListener{ adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
+            selectedStaff = viewModel.staffList.value!!.get(i).id
+        }
+        groups.setOnItemClickListener{ adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
+            selectedGroup = viewModel.groupList.value!!.get(i).id
+        }
         viewModel.errorLiveData.observe(viewLifecycleOwner, Observer {
             if (!it.isNullOrBlank())
                 Toast.makeText(
@@ -136,10 +145,10 @@ class FilterDialog : DialogFragment() {
                 callback.onMyGroupChecked()
             }
             if (selectedFilter == 1) {
-                callback.onByStaffChecked(1)
+                callback.onByStaffChecked(selectedStaff)
             }
             if (selectedFilter == 3) {
-                callback.onByGroupChecked(1)
+                callback.onByGroupChecked(selectedGroup)
             }
             if (selectedFilter == 5) {
                 if (roomText.text.isNullOrBlank()) {
