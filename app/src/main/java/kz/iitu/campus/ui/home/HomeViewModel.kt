@@ -1,60 +1,186 @@
 package kz.iitu.campus.ui.home
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kz.iitu.campus.model.schedule.ScheduleDto
-import kz.iitu.campus.model.schedule.ScheduleItem
+import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.*
+import kz.iitu.campus.model.schedule.Group
+import kz.iitu.campus.model.schedule.Staff
+import kz.iitu.campus.model.schedule.Timetable
+import kz.iitu.campus.repository.ScheduleRepository
+import kotlin.coroutines.CoroutineContext
 
-class HomeViewModel : ViewModel() {
-    val list = MutableLiveData<ScheduleDto>()
+class HomeViewModel(
+    private val scheduleRepository: ScheduleRepository
+) : ViewModel(), CoroutineScope {
 
-    fun setList() {
-        val lessonListVersion1 = listOf(
-            ScheduleItem(
-                0, "11:00", "11:50",
-                "Fundamentals of Scientific Research", "700", "IS-1701K,IS-1702K",
-                "Aitim A.K.", "senior-lecturer"
-            ),
-            ScheduleItem(
-                1, "12:10", "13:00",
-                "Fundamentals of Scientific Research", "705", "IS-1701K",
-                "Aitim A.K.", "senior-lecturer"
-            ),
-            ScheduleItem(
-                2, "13:10", "14:00",
-                "Fundamentals of Scientific Research", "605", "IS-1701K,",
-                "Aitim A.K.", "senior-lecturer"
-            )
-        )
+    private val job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
 
-        val lessonListVersion2 = listOf(
-            ScheduleItem(
-                0, "11:00", "11:50",
-                "Database and Client/Server Application", "700", "IS-1701K,IS-1702K",
-                "Muratova K.", "senior-lecturer"
-            ),
-            ScheduleItem(
-                1, "12:10", "13:00",
-                "Fundamentals of Scientific Research", "705", "IS-1701K",
-                "Muratova K.", "senior-lecturer"
-            ),
-            ScheduleItem(
-                2, "13:10", "14:00",
-                "Fundamentals of Scientific Research", "605", "IS-1701K,",
-                "Muratova K.", "senior-lecturer"
-            )
-        )
 
-        val scheduleDto = ScheduleDto(
-            id = 0,
-            group = "IS-1701K",
-            mondayList = lessonListVersion1,
-            thurthdayList = lessonListVersion2,
-            tuesdayList = lessonListVersion1,
-            fridayList = lessonListVersion1,
-            wednesdayList = lessonListVersion2
-        )
+    val mondayList = MutableLiveData<List<Timetable>>()
+    val tuesdayList = MutableLiveData<List<Timetable>>()
+    val wednesdayList = MutableLiveData<List<Timetable>>()
+    val thursdayList = MutableLiveData<List<Timetable>>()
+    val fridayList = MutableLiveData<List<Timetable>>()
 
-        list.value = scheduleDto
+    val staffList = MutableLiveData<List<Staff>>()
+    val groupList = MutableLiveData<List<Group>>()
+
+    val errorLiveData = MutableLiveData<String>()
+
+    fun getStaffList(token: String) {
+        launch {
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    scheduleRepository.getStaffList(bearer = token)
+                }
+            }.onSuccess {
+                it.let {
+                    it.also { staffList.value = it }
+                    Log.d("ntwrk", it.toString())
+                }
+            }.onFailure {
+                errorLiveData.value = it.message.toString()
+                Log.d("ntwrk", it.message.toString())
+            }
+        }
+    }
+
+    fun getGroupList(token: String) {
+        launch {
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    scheduleRepository.getGroupList(bearer = token)
+                }
+            }.onSuccess {
+                it.let {
+                    it.also { groupList.value = it }
+                    Log.d("ntwrk", it.toString())
+                }
+            }.onFailure {
+                errorLiveData.value = it.message.toString()
+                Log.d("ntwrk", it.message.toString())
+            }
+        }
+    }
+
+    fun getGroupTimeTable(token: String) {
+        launch {
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    scheduleRepository.getGroupTimetable(bearer = token)
+                }
+            }.onSuccess {
+                it.let {
+                    it.also { setDayOfWeeks(it) }
+                    Log.d("ntwrk", it.toString())
+                }
+            }.onFailure {
+                errorLiveData.value = it.message.toString()
+                Log.d("ntwrk", it.message.toString())
+            }
+        }
+    }
+
+    fun getGroupTimeTableByStaff(token: String, staffId: Int) {
+        launch {
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    scheduleRepository.getGroupTimetableByStaff(bearer = token, id = staffId)
+                }
+            }.onSuccess {
+                it.let {
+                    it.also { setDayOfWeeks(it) }
+                    Log.d("ntwrk", it.toString())
+                }
+            }.onFailure {
+                errorLiveData.value = it.message.toString()
+                Log.d("ntwrk", it.message.toString())
+            }
+        }
+    }
+
+    fun getGroupTimeTableByGroup(token: String,groupId: Int) {
+        launch {
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    scheduleRepository.getGroupTimetableByGroup(bearer = token, id = groupId)
+                }
+            }.onSuccess {
+                it.let {
+                    it.also { setDayOfWeeks(it) }
+                    Log.d("ntwrk", it.toString())
+                }
+            }.onFailure {
+                errorLiveData.value = it.message.toString()
+                Log.d("ntwrk", it.message.toString())
+            }
+        }
+    }
+
+    fun getGroupTimeTableByRoom(token: String, room: Int) {
+        launch {
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    scheduleRepository.getGroupTimetableByRoom(bearer = token, room = room)
+                }
+            }.onSuccess {
+                it.let {
+                    it.also { setDayOfWeeks(it) }
+                    Log.d("ntwrk", it.toString())
+                }
+            }.onFailure {
+                errorLiveData.value = it.message.toString()
+                Log.d("ntwrk", it.message.toString())
+            }
+        }
+    }
+
+    private fun setDayOfWeeks(list: List<Timetable>) {
+        val monday = mutableListOf<Timetable>()
+        val tuesday= mutableListOf<Timetable>()
+        val wednesday = mutableListOf<Timetable>()
+        val thursday = mutableListOf<Timetable>()
+        val friday= mutableListOf<Timetable>()
+        for (timetable in list) {
+            if (timetable.day_of_week==1) {
+                monday.add(timetable)
+            }
+            if (timetable.day_of_week==1) {
+                tuesday.add(timetable)
+            }
+            if (timetable.day_of_week==3) {
+                wednesday.add(timetable)
+            }
+            if (timetable.day_of_week==4) {
+                thursday.add(timetable)
+            }
+            if (timetable.day_of_week==5) {
+                friday.add(timetable)
+            }
+        }
+        mondayList.value = monday
+        tuesdayList.value = tuesday
+        wednesdayList.value = wednesday
+        thursdayList.value = thursday
+        fridayList.value = friday
+
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
+    }
+
+    class ScheduleFactory(
+        private val scheduleRepository: ScheduleRepository
+    ) : ViewModelProvider.Factory {
+
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return HomeViewModel(scheduleRepository) as T
+        }
     }
 }

@@ -56,5 +56,55 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_8sdp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="16dp"
+            android:text="Thursday"
+            android:textColor="@color/primary_text_color"
+            android:textSize="@dimen/medium_text_size" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/thursdayRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="16dp"
+            android:text="Friday"
+            android:textColor="@color/primary_text_color"
+            android:textSize="@dimen/medium_text_size" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fridayRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="16dp"
+            android:text="Saturday"
+            android:textColor="@color/primary_text_color"
+            android:textSize="@dimen/medium_text_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="30dp"
+            android:text="Sunday"
+            android:textColor="@color/primary_text_color"
+            android:textSize="@dimen/medium_text_size" />
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
