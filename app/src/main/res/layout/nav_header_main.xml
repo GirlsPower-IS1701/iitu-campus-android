@@ -24,10 +24,11 @@
         <ImageView
             android:id="@+id/campus_icon"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="bottom"
             android:contentDescription="@string/nav_header_desc"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            app:srcCompat="@drawable/ic_campus" />
+            app:srcCompat="@drawable/ic_campus_white" />
 
         <TextView
             android:layout_width="match_parent"
@@ -37,8 +38,8 @@
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:text="@string/app_label"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/secondary_text_color"
-            android:textSize="@dimen/large_text_size" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/very_large_text_size" />
 
     </LinearLayout>
 

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.*
+import kz.iitu.campus.model.model.RefHistory
 import kz.iitu.campus.repository.RefRepository
 import kotlin.coroutines.CoroutineContext
 
@@ -19,6 +20,8 @@ class RefViewModel(
     val user = MutableLiveData<String>()
     val errorLiveData = MutableLiveData<String>()
     val loadingState = MutableLiveData<Boolean>(false)
+    val history = MutableLiveData<List<RefHistory>>()
+
 
     fun createRef(token: String) {
         loadingState.value = true
@@ -35,6 +38,24 @@ class RefViewModel(
                 }
             }.onFailure {
                 loadingState.value = false
+                errorLiveData.value = it.message.toString()
+                Log.d("ntwrk", it.message.toString())
+            }
+        }
+    }
+
+    fun getHistory(token: String) {
+        launch {
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    refRepository.getRefHistory(token)
+                }
+            }.onSuccess {
+                it.let {
+                    history.value = it
+                    Log.d("ntwrk", it.toString())
+                }
+            }.onFailure {
                 errorLiveData.value = it.message.toString()
                 Log.d("ntwrk", it.message.toString())
             }

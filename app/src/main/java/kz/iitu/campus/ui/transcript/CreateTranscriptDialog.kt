@@ -1,33 +1,31 @@
-package kz.iitu.campus.ui.ref
+package kz.iitu.campus.ui.transcript
 
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.dialog_create_ref.*
-import kotlinx.android.synthetic.main.dialog_create_ref.loading_state
-import kotlinx.android.synthetic.main.dialog_exit.btn_ok
+import kotlinx.android.synthetic.main.dialog_create_ref.btn_ok
 import kz.iitu.campus.R
-import kz.iitu.campus.repository.RefRepository
+import kz.iitu.campus.repository.StudyPlanRepository
 import kz.iitu.campus.services.ApiFactory
 import kz.iitu.campus.services.UserSession
 
-class RefCreateDialog : DialogFragment() {
+class CreateTranscriptDialog : DialogFragment() {
 
-    private lateinit var callback: OnRefCreatedCallback
+    private lateinit var callback: OnTranscriptCreatedCallback
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
-            if (parentFragment is OnRefCreatedCallback)
-                callback = parentFragment as OnRefCreatedCallback
+            if (parentFragment is OnTranscriptCreatedCallback)
+                callback = parentFragment as OnTranscriptCreatedCallback
         } catch (e: ClassCastException) {
             e.printStackTrace()
         }
@@ -35,12 +33,12 @@ class RefCreateDialog : DialogFragment() {
 
     private val viewModel by lazy {
         ViewModelProviders.of(
-            this, RefViewModel.AuthFactory(
-                RefRepository(
+            this, IupViewModel.IupFactory(
+                StudyPlanRepository(
                     ApiFactory.getApi()
                 )
             )
-        )[RefViewModel::class.java]
+        )[IupViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -48,7 +46,7 @@ class RefCreateDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.dialog_create_ref, container, false)
+        return inflater.inflate(R.layout.dialog_create_trancript, container, false)
     }
 
     override fun onStart() {
@@ -60,9 +58,6 @@ class RefCreateDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val items = listOf("Сertificate from the place of study")
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, R.id.types, items)
-        (type)?.setAdapter(adapter)
         setListeners()
         setObservers()
     }
@@ -84,7 +79,7 @@ class RefCreateDialog : DialogFragment() {
                     it,
                     Toast.LENGTH_LONG
                 ).show()
-            callback.onRefCreated()
+            callback.onTranscriptCreated()
             dismiss()
         })
         viewModel.loadingState.observe(this, Observer {
@@ -95,12 +90,12 @@ class RefCreateDialog : DialogFragment() {
     private fun setListeners() {
         val bearer: String = "Bearer " + this.context?.let { UserSession.getUserToken(it) }
         btn_ok.setOnClickListener {
-            viewModel.createRef(bearer)
+            viewModel.createTranscript(bearer)
         }
     }
 
-    interface OnRefCreatedCallback {
-        fun onRefCreated() = Unit
+    interface OnTranscriptCreatedCallback {
+        fun onTranscriptCreated() = Unit
     }
 
 }

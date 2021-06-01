@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.*
 import kz.iitu.campus.model.model.StudyPlan
+import kz.iitu.campus.model.model.StudyPlanDto
+import kz.iitu.campus.model.model.StudyPlanHistory
 import kz.iitu.campus.repository.StudyPlanRepository
 import kotlin.coroutines.CoroutineContext
 
@@ -17,8 +19,11 @@ class IupViewModel(
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
-    val studyPlan = MutableLiveData<List<StudyPlan>>()
+    val studyPlan = MutableLiveData<StudyPlanDto>()
+    val user = MutableLiveData<String>()
+    val loadingState = MutableLiveData<Boolean>(false)
     val errorLiveData = MutableLiveData<String>()
+    val history = MutableLiveData<List<StudyPlanHistory>>()
 
     fun getStudyPlan(token: String) {
         launch {
@@ -38,6 +43,44 @@ class IupViewModel(
         }
     }
 
+    fun createTranscript(token: String) {
+        loadingState.value = true
+        launch {
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    studyPlanRepository.createTranscript(token)
+                }
+            }.onSuccess {
+                loadingState.value = false
+                it.let {
+                    user.value = "Successfully send"
+                    Log.d("ntwrk", it.toString())
+                }
+            }.onFailure {
+                loadingState.value = false
+                errorLiveData.value = it.message.toString()
+                Log.d("ntwrk", it.message.toString())
+            }
+        }
+    }
+
+    fun getHistory(token: String) {
+        launch {
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    studyPlanRepository.getTranscriptHistory(token)
+                }
+            }.onSuccess {
+                it.let {
+                    history.value = it
+                    Log.d("ntwrk", it.toString())
+                }
+            }.onFailure {
+                errorLiveData.value = it.message.toString()
+                Log.d("ntwrk", it.message.toString())
+            }
+        }
+    }
 
     override fun onCleared() {
         super.onCleared()

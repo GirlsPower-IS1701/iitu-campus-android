@@ -17,6 +17,7 @@
     <string name="references">My Certificates</string>
     <string name="academic_calendar">Academic Calendar</string>
     <string name="chat">Chat</string>
+    <string name="notifications">Notifications</string>
     <string name="study_plan">My Study plan</string>
     <string name="logout">Log out</string>
     <string name="login_label">Sign in</string>
@@ -48,5 +49,7 @@
     <string name="no_data_found">No Data</string>
     <string name="send_to_my_email">Send to my email</string>
     <string name="create_certificate">Create Certificate</string>
+    <string name="create_transcript">Create Current Transcript</string>
     <string name="select_type">Select Type</string>
+    <string name="we_will_send_your_current_transcript_report_to_your_e_mail">We will send your current transcript report to your e-mail</string>
 </resources>

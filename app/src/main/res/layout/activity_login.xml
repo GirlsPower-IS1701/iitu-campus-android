@@ -135,7 +135,7 @@
                 android:text="@string/login_label"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
-                app:backgroundTint="@color/primary_blue" />
+                app:backgroundTint="@color/primary_text_color" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

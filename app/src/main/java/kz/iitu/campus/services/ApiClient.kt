@@ -1,10 +1,7 @@
 package kz.iitu.campus.services
 
 import kz.iitu.campus.model.academic_calendar.AcademicCalendarDto
-import kz.iitu.campus.model.model.LoginResponse
-import kz.iitu.campus.model.model.StudentProfile
-import kz.iitu.campus.model.model.StudyPlan
-import kz.iitu.campus.model.model.User
+import kz.iitu.campus.model.model.*
 import retrofit2.http.*
 
 interface ApiClient {
@@ -21,9 +18,11 @@ interface ApiClient {
         const val STUDENT_PROFILE = STUDENT + "api/student_profile"
 
         const val STUDY_PLAN = GROUPS + "api/study_plan/"
+
         const val CREATE_REFERENCE = REFERENCES + "api/references/"
-
-
+        const val CREATE_TRANSCRIPT = GROUPS + "api/get_gpa/"
+        const val GET_TRANSCRIPT_HISTORY = GROUPS + "api/gpa_history/"
+        const val GET_REF_HISTORY = CREATE_REFERENCE + "history"
     }
 
     @FormUrlEncoded
@@ -41,15 +40,32 @@ interface ApiClient {
     @GET(STUDY_PLAN)
     suspend fun getStudyPlan(
         @Header("Authorization") bearer: String
-    ): List<StudyPlan>
+    ): StudyPlanDto
 
+    @FormUrlEncoded
     @POST(CREATE_REFERENCE)
     suspend fun createReference(
-        @Header("Authorization") bearer: String
+        @Header("Authorization") bearer: String,
+        @Field("reference_id") type: Int
     ): User
 
     @GET(GET_CALENDAR)
     suspend fun getCalendar(
         @Header("Authorization") bearer: String
     ): AcademicCalendarDto
+
+    @GET(GET_REF_HISTORY)
+    suspend fun getRefHistory(
+        @Header("Authorization") bearer: String
+    ): List<RefHistory>
+
+    @GET(CREATE_TRANSCRIPT)
+    suspend fun createTranscript(
+        @Header("Authorization") bearer: String
+    ): User
+
+    @GET(GET_TRANSCRIPT_HISTORY)
+    suspend fun getTranscriptHistory(
+        @Header("Authorization") bearer: String
+    ): List<StudyPlanHistory>
 }
