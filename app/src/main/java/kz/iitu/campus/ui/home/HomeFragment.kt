@@ -14,6 +14,7 @@ import kz.iitu.campus.R
 import kz.iitu.campus.repository.ScheduleRepository
 import kz.iitu.campus.services.ApiFactory
 import kz.iitu.campus.services.UserSession
+import kz.iitu.campus.ui.utils.AnimRecipes.collapseExpand
 
 class HomeFragment : Fragment() {
 
@@ -34,13 +35,20 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        setupViews()
-        setObservers()
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupViews()
+
+        setObservers()
+
+        setListeners()
+    }
+
+    private fun setupViews() {
 
         mondayRv.layoutManager =
             LinearLayoutManager(this.context)
@@ -52,9 +60,7 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(this.context)
         fridayRV.layoutManager =
             LinearLayoutManager(this.context)
-    }
 
-    private fun setupViews() {
         val bearer: String = "Bearer " + this.context?.let { UserSession.getUserToken(it) }
         viewModel.getGroupTimeTable(bearer)
     }
@@ -87,5 +93,23 @@ class HomeFragment : Fragment() {
         viewModel.fridayList.observe(viewLifecycleOwner, Observer {
             fridayRV.adapter = ScheduleRVA(it)
         })
+    }
+
+    private fun setListeners() {
+        ec_monday.setOnClickListener{
+            collapseExpand(ec_monday, mondayRv)
+        }
+        ec_tuesday.setOnClickListener{
+            collapseExpand(ec_tuesday, tuesdayRv)
+        }
+        ec_wednesday.setOnClickListener{
+            collapseExpand(ec_wednesday, wednesdayRv)
+        }
+        ec_thursday.setOnClickListener{
+            collapseExpand(ec_thursday, thursdayRv)
+        }
+        ec_friday.setOnClickListener{
+            collapseExpand(ec_friday, fridayRV)
+        }
     }
 }

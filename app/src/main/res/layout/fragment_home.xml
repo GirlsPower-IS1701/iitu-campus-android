@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background_primary"
     tools:context=".ui.home.HomeFragment">
 
@@ -12,14 +12,31 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="16dp"
-            android:text="Monday"
-            android:textColor="@color/primary_text_color"
-            android:textSize="@dimen/medium_text_size" />
+            android:layout_margin="@dimen/_8sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Monday"
+                android:textColor="@color/primary_text_color"
+                android:textSize="@dimen/medium_text_size" />
+
+            <ImageView
+                android:id="@+id/ec_monday"
+                android:layout_weight="5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/nav_header_desc"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                app:srcCompat="@drawable/ic_arrow_up" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mondayRv"
@@ -27,84 +44,186 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_8sdp" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="16dp"
-            android:text="Tuesday"
-            android:textColor="@color/primary_text_color"
-            android:textSize="@dimen/medium_text_size" />
+            android:layout_margin="@dimen/_8sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Tuesday"
+                android:textColor="@color/primary_text_color"
+                android:textSize="@dimen/medium_text_size" />
+
+            <ImageView
+                android:id="@+id/ec_tuesday"
+                android:layout_weight="5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/nav_header_desc"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                app:srcCompat="@drawable/ic_arrow_up" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tuesdayRv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_margin="@dimen/_8sdp" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="16dp"
-            android:text="Wednesday"
-            android:textColor="@color/primary_text_color"
-            android:textSize="@dimen/medium_text_size" />
+            android:layout_margin="@dimen/_8sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Wednesday"
+                android:textColor="@color/primary_text_color"
+                android:textSize="@dimen/medium_text_size" />
+
+            <ImageView
+                android:id="@+id/ec_wednesday"
+                android:layout_weight="5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/nav_header_desc"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                app:srcCompat="@drawable/ic_arrow_up" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/wednesdayRv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_margin="@dimen/_8sdp" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="16dp"
-            android:text="Thursday"
-            android:textColor="@color/primary_text_color"
-            android:textSize="@dimen/medium_text_size" />
+            android:layout_margin="@dimen/_8sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Thursday"
+                android:textColor="@color/primary_text_color"
+                android:textSize="@dimen/medium_text_size" />
+
+            <ImageView
+                android:id="@+id/ec_thursday"
+                android:layout_weight="5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/nav_header_desc"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                app:srcCompat="@drawable/ic_arrow_up" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/thursdayRv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_margin="@dimen/_8sdp" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="16dp"
-            android:text="Friday"
-            android:textColor="@color/primary_text_color"
-            android:textSize="@dimen/medium_text_size" />
+            android:layout_margin="@dimen/_8sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Friday"
+                android:textColor="@color/primary_text_color"
+                android:textSize="@dimen/medium_text_size" />
+
+            <ImageView
+                android:id="@+id/ec_friday"
+                android:layout_weight="5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/nav_header_desc"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                app:srcCompat="@drawable/ic_arrow_up" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fridayRV"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_8sdp" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="16dp"
-            android:text="Saturday"
-            android:textColor="@color/primary_text_color"
-            android:textSize="@dimen/medium_text_size" />
+            android:layout_margin="@dimen/_8sdp"
+            android:orientation="horizontal">
 
-        <TextView
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Saturday"
+                android:textColor="@color/primary_text_color"
+                android:textSize="@dimen/medium_text_size" />
+
+            <ImageView
+                android:layout_weight="5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/nav_header_desc"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                app:srcCompat="@drawable/ic_arrow_up" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="30dp"
-            android:text="Sunday"
-            android:textColor="@color/primary_text_color"
-            android:textSize="@dimen/medium_text_size" />
+            android:layout_margin="@dimen/_8sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Sunday"
+                android:textColor="@color/primary_text_color"
+                android:textSize="@dimen/medium_text_size" />
+
+            <ImageView
+                android:layout_weight="5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/nav_header_desc"
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                app:srcCompat="@drawable/ic_arrow_up" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
