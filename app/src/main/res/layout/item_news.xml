@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:background="@color/white"
+        app:cardCornerRadius="@dimen/_10sdp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="8dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:text="ddgfbgnggggggggggggggggggggggggggggg"
+                android:maxLines="2"
+                android:textSize="@dimen/standard_text_size"
+                android:textColor="@color/primary_text_color"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/body"
+                android:layout_width="match_parent"
+                android:layout_margin="6dp"
+                android:text="ddgfbgnddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddggggggggggggggggggggggggggggg"
+                android:maxLines="3"
+                android:textSize="@dimen/standard_text_size"
+                android:textColor="@color/secondary_text_color"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_marginTop="4dp"
+                android:textStyle="bold"
+                android:text="2.323.23"
+                android:textAlignment="textEnd"
+                android:maxLines="3"
+                android:textSize="@dimen/small_text_size"
+                android:textColor="@color/primary_text_color"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

@@ -29,7 +29,7 @@ class TranscriptHistoryRVA (
         ) : RecyclerView.ViewHolder(view) {
             fun bind(item: StudyPlanHistory) {
 
-                val format = SimpleDateFormat("dd.MM.yyyy")
+                val format = SimpleDateFormat("dd.MM.yyyy hh:mm")
                 view.date.text = format.format(item.created_at)
             }
         }

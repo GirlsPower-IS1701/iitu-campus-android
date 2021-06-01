@@ -12,6 +12,7 @@ interface ApiClient {
         const val GROUPS = VI + "groups/"
         const val REFERENCES = VI + "references/"
         const val CALENDAR = VI + "calendar/"
+        const val NEWS = VI + "news/"
 
         const val LOGIN = ACCOUNT + "api/token/"
         const val GET_CALENDAR = CALENDAR + "api/get_calendar_events"
@@ -23,6 +24,7 @@ interface ApiClient {
         const val CREATE_TRANSCRIPT = GROUPS + "api/get_gpa/"
         const val GET_TRANSCRIPT_HISTORY = GROUPS + "api/gpa_history/"
         const val GET_REF_HISTORY = CREATE_REFERENCE + "history"
+        const val GET_NEWS = NEWS + "api/get_news/"
     }
 
     @FormUrlEncoded
@@ -68,4 +70,9 @@ interface ApiClient {
     suspend fun getTranscriptHistory(
         @Header("Authorization") bearer: String
     ): List<StudyPlanHistory>
+
+    @GET(GET_NEWS)
+    suspend fun getNews(
+        @Header("Authorization") bearer: String
+    ): List<Notification>
 }
