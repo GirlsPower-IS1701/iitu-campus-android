@@ -90,20 +90,20 @@ interface ApiClient {
         @Header("Authorization") bearer: String
     ): List<Notification>
 
-    @GET(GET_GROUP_TIMETABLE)
+    @POST(GET_GROUP_TIMETABLE)
     suspend fun getTimetable(
         @Header("Authorization") bearer: String
     ): List<Timetable>
 
     @FormUrlEncoded
-    @GET(GET_GROUP_TIMETABLE_BY_STAFF)
+    @POST(GET_GROUP_TIMETABLE_BY_STAFF)
     suspend fun getTimetableByStaff(
         @Header("Authorization") bearer: String,
         @Field("staff_id") id: Int
     ): List<Timetable>
 
     @FormUrlEncoded
-    @GET(
+    @POST(
         GET_GROUP_TIMETABLE_BY_GROUP)
     suspend fun getTimetableByGroup(
         @Header("Authorization") bearer: String,
@@ -111,7 +111,7 @@ interface ApiClient {
     ): List<Timetable>
 
     @FormUrlEncoded
-    @GET(GET_GROUP_TIMETABLE_BY_ROOM)
+    @POST(GET_GROUP_TIMETABLE_BY_ROOM)
     suspend fun getTimetableByRoom(
         @Header("Authorization") bearer: String,
         @Field("room_number") room_number: Int

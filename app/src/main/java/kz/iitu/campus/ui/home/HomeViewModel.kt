@@ -31,6 +31,7 @@ class HomeViewModel(
 
     val errorLiveData = MutableLiveData<String>()
     val selectedFilter = MutableLiveData<Int>(0)
+    val loadingState = MutableLiveData<Boolean>(false)
 
     fun getStaffList(token: String) {
         launch {
@@ -69,17 +70,20 @@ class HomeViewModel(
     }
 
     fun getGroupTimeTable(token: String) {
+        loadingState.value = true
         launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
                     scheduleRepository.getGroupTimetable(bearer = token)
                 }
             }.onSuccess {
+                loadingState.value = false
                 it.let {
                     it.also { setDayOfWeeks(it) }
                     Log.d("ntwrk", it.toString())
                 }
             }.onFailure {
+                loadingState.value = false
                 errorLiveData.value = it.message.toString()
                 Log.d("ntwrk", it.message.toString())
             }
@@ -87,17 +91,20 @@ class HomeViewModel(
     }
 
     fun getGroupTimeTableByStaff(token: String, staffId: Int) {
+        loadingState.value = true
         launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
                     scheduleRepository.getGroupTimetableByStaff(bearer = token, id = staffId)
                 }
             }.onSuccess {
+                loadingState.value = false
                 it.let {
                     it.also { setDayOfWeeks(it) }
                     Log.d("ntwrk", it.toString())
                 }
             }.onFailure {
+                loadingState.value = false
                 errorLiveData.value = it.message.toString()
                 Log.d("ntwrk", it.message.toString())
             }
@@ -105,17 +112,20 @@ class HomeViewModel(
     }
 
     fun getGroupTimeTableByGroup(token: String,groupId: Int) {
+        loadingState.value = true
         launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
                     scheduleRepository.getGroupTimetableByGroup(bearer = token, id = groupId)
                 }
             }.onSuccess {
+                loadingState.value = false
                 it.let {
                     it.also { setDayOfWeeks(it) }
                     Log.d("ntwrk", it.toString())
                 }
             }.onFailure {
+                loadingState.value = false
                 errorLiveData.value = it.message.toString()
                 Log.d("ntwrk", it.message.toString())
             }
@@ -123,17 +133,20 @@ class HomeViewModel(
     }
 
     fun getGroupTimeTableByRoom(token: String, room: Int) {
+        loadingState.value = true
         launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
                     scheduleRepository.getGroupTimetableByRoom(bearer = token, room = room)
                 }
             }.onSuccess {
+                loadingState.value = false
                 it.let {
                     it.also { setDayOfWeeks(it) }
                     Log.d("ntwrk", it.toString())
                 }
             }.onFailure {
+                loadingState.value = false
                 errorLiveData.value = it.message.toString()
                 Log.d("ntwrk", it.message.toString())
             }
