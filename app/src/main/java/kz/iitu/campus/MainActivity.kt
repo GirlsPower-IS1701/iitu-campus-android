@@ -37,7 +37,8 @@ class MainActivity : AppCompatActivity(), ExitDialog.OnExitCallback {
                 R.id.nav_academic_calendar,
                 R.id.nav_references,
                 R.id.nav_logout,
-                R.id.nav_study_plan
+                R.id.nav_study_plan,
+                R.id.nav_notifications
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
