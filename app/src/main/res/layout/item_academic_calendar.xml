@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
     android:layout_height="wrap_content">
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/white"
-        app:cardCornerRadius="@dimen/_2sdp">
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginTop="12dp"
-          android:layout_marginBottom="12dp"
-          android:layout_marginEnd="16dp"
-          android:layout_marginStart="16dp"
           android:orientation="horizontal">
+
+          <ImageView
+              android:layout_width="25dp"
+              android:layout_height="25dp"
+              android:layout_marginEnd="@dimen/_16sdp"
+              android:contentDescription="@string/nav_header_desc"
+              android:paddingTop="@dimen/nav_header_vertical_spacing"
+              app:srcCompat="@drawable/ic_group" />
 
           <TextView
               android:id="@+id/title"
@@ -28,6 +26,7 @@
               android:layout_height="wrap_content"
               android:layout_weight="2"
               android:textStyle="bold"
+              android:layout_gravity="center"
               android:textColor="@color/primary_text_color"
               android:textSize="@dimen/standard_text_size"
               tool:text="is-1701 dfhjbhjbgfhjghjg dkfbdhjg" />
@@ -38,17 +37,17 @@
               android:layout_height="wrap_content"
               android:layout_weight="4"
               android:textAlignment="textEnd"
+              android:layout_gravity="center|end"
               android:textColor="@color/primary_text_color"
               android:textSize="@dimen/small_text_size"
               tool:text="19.04.2020 - 34.04.2343" />
 
       </LinearLayout>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="@color/background_primary"
-    android:layout_gravity="bottom"/>
-    </androidx.cardview.widget.CardView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="6dp"
+        android:background="@color/primary_text_color"
+        android:layout_height="1dp"/>
 
-</FrameLayout>
+</LinearLayout>

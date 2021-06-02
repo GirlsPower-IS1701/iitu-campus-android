@@ -10,7 +10,7 @@ import kz.iitu.campus.model.academic_calendar.CalendarItem
 
 
 class CalendarRVA(
-private val list: List<CalendarItem>
+    private val list: List<CalendarItem>
 ) : RecyclerView.Adapter<CalendarRVA.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
@@ -29,7 +29,9 @@ private val list: List<CalendarItem>
     ) : RecyclerView.ViewHolder(view) {
         fun bind(item: CalendarItem) {
             view.title.text = item.name
-            view.date.text = item.from_date + " "+ item.to_date
+            if (item.to_date != null)
+                view.date.text = item.from_date + " " + item.to_date
+            else  view.date.text = item.from_date
         }
     }
 

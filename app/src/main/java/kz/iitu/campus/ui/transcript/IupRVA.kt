@@ -28,10 +28,14 @@ class IupRVA(
     ) : RecyclerView.ViewHolder(view) {
         fun bind(item: StudyPlan) {
             view.title.text = item.subject
-            view.rk1.text = item.grade_letter + " (" + item.pk1.toString() + ")"
-            view.rk2.text = item.grade_letter + " (" +item.pk2.toString() + ")"
-            view.final_grade.text = item.grade_letter + " (" + item.final.toString() + ")"
+            view.rk1.text = getStringLetter(item.pk1) + " (" + item.pk1.toString() + ")"
+            view.rk2.text = getStringLetter(item.pk2) + " (" + item.pk2.toString() + ")"
+            view.final_grade.text = getStringLetter(item.final) + " (" + item.final.toString() + ")"
             view.gpa.text = item.gpa.toString()
         }
+    }
+
+    private fun getStringLetter(grade: Float): String {
+        return "F"
     }
 }
