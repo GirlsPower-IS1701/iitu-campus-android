@@ -36,6 +36,18 @@ class IupRVA(
     }
 
     private fun getStringLetter(grade: Float): String {
-        return "F"
+        return when {
+            (grade < 100 && grade > 94.00) -> "A"
+            (grade < 95.00 && grade > 89.00) -> "A-"
+            (grade < 90.00 && grade > 84.00) -> "B+"
+            (grade < 85.00 && grade > 79.00) -> "B"
+            (grade < 80.00 && grade > 74.00) -> "B-"
+            (grade < 75.00 && grade > 69.00) -> "C+"
+            (grade < 70.00 && grade > 64.00) -> "C"
+            (grade < 65.00 && grade > 59.00) -> "C-"
+            (grade < 60.00 && grade > 54.00) -> "D+"
+            (grade < 55.00 && grade > 49.00) -> "D"
+            else -> "F"
+        }
     }
 }
